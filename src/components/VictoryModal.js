@@ -6,12 +6,16 @@ import styled from "styled-components";
 import InfoBox from "./InfoBox";
 import Button from "./Button";
 
-const Container = styled.main`
+const Container = styled.div`
+  position: absolute;
   display: flex;
   min-height: 100%;
+  min-width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
 `;
 
 function VictoryModal() {
@@ -20,6 +24,7 @@ function VictoryModal() {
       <InfoBox>
         <h1>Time: 01:13</h1>
         <h1>Rank: 12th</h1>
+        <h2>You were faster than 24% of players. Nice!</h2>
         <form>
           <label for="highscore-name">
             Enter your name to save your score!

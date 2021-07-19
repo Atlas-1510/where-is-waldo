@@ -8,6 +8,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin: 1rem;
+  padding: 1rem;
   background-color: pink;
   border-radius: 25px;
 `;

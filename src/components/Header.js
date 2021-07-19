@@ -11,7 +11,8 @@ const Container = styled.header`
   background-color: lightblue;
   display: flex;
   justify-content: space-between;
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
 `;
 

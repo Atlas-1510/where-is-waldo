@@ -15,6 +15,10 @@ const Container = styled.main`
   align-items: center;
 `;
 
+const SelectMap = styled.h1`
+  margin: 1rem;
+`;
+
 const MapsContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -32,15 +36,12 @@ function PreGamePage() {
   return (
     <Container>
       <InfoBox>
-        <h1>Select map...</h1>
+        <SelectMap>Select map...</SelectMap>
         <MapsContainer>
           <MapOption emoji={"🎶"} title={"The Best Festival Ever"} />
           <MapOption emoji={"🔎"} title={"Classic Where's Waldo"} />
           <MapOption emoji={"🥳"} title={"Another placeholder here"} />
-          <MapOption
-            emoji={"🤬"}
-            title={"Something with a really long title"}
-          />
+          <MapOption emoji={"🤬"} title={"Another option here"} />
         </MapsContainer>
         <Button title={"Start"} />
       </InfoBox>

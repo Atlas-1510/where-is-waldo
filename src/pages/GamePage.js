@@ -5,6 +5,7 @@ import styled from "styled-components";
 // Components
 import Header from "../components/Header";
 import Image from "../components/Image";
+import VictoryModal from "../components/VictoryModal";
 
 // Assets
 import TestImage from "../images/Zalando-Festival-Map-No-Title-Final-2.jpg"; // TODO: Remove dummy image, load from firebase instead.
@@ -46,11 +47,15 @@ const DummyTargets = [
   },
 ];
 
+// TODO: Remove dumb victory flag
+const victory = true;
+
 function GamePage() {
   return (
     <Container>
-      <Header targets={DummyTargets} />
+      {!victory && <Header targets={DummyTargets} />}
       <Image image={TestImage} />
+      {victory && <VictoryModal />}
     </Container>
   );
 }

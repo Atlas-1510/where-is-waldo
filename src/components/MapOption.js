@@ -3,16 +3,15 @@ import React from "react";
 import styled from "styled-components";
 
 // Assets
-
 const Container = styled.div`
   background-color: lightgreen;
   margin: 1rem;
-  width: 100px;
-  min-height: 100px;
+  width: 10rem;
+  height: 7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  ${"" /* justify-content: space-around; */}
   text-align: center;
 
   @media (max-width: 600px) {
@@ -26,7 +25,8 @@ const Emoji = styled.div`
 `;
 
 const MapTitle = styled.h4`
-  margin: 0;
+  margin: 1rem;
+  padding: 0;
 `;
 
 function MapOption({ emoji, title }) {
