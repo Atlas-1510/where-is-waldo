@@ -48,7 +48,7 @@ const DummyTargets = [
 ];
 
 // TODO: Remove dumb victory flag
-const victory = true;
+const victory = false;
 
 function GamePage() {
   return (
