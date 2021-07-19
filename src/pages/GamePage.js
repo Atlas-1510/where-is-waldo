@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 // Components
-import Header from "../components/Header";
+import GameHeader from "../components/GameHeader";
 import Image from "../components/Image";
 import VictoryModal from "../components/VictoryModal";
 
@@ -53,7 +53,7 @@ const victory = true;
 function GamePage() {
   return (
     <Container>
-      {!victory && <Header targets={DummyTargets} />}
+      {!victory && <GameHeader targets={DummyTargets} />}
       <Image image={TestImage} />
       {victory && <VictoryModal />}
     </Container>

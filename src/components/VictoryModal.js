@@ -26,13 +26,13 @@ function VictoryModal() {
         <h1>Rank: 12th</h1>
         <h2>You were faster than 24% of players. Nice!</h2>
         <form>
-          <label for="highscore-name">
+          <label htmlFor="highscore-name">
             Enter your name to save your score!
           </label>
           <input type="text" id="highscore-name" placeholder="Name"></input>
         </form>
         <div>
-          <Button title={"Play Again?"} />
+          <Button title={"Play Again"} />
           <Button title={"View high scores"} />
         </div>
       </InfoBox>
