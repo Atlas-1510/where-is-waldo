@@ -7,7 +7,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  margin: 1rem;
   background-color: pink;
   border-radius: 25px;
 `;
