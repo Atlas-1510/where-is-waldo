@@ -35,7 +35,7 @@ function Image({ image, targets }) {
 
   return (
     <Container onClick={handleClick}>
-      {menu.open && <Menu menu={menu} targets={targets} />}
+      {menu.open && <Menu location={menu} targets={targets} />}
       <Img src={image} alt="Characters hidden amid lots of detail" />
     </Container>
   );

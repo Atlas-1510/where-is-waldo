@@ -2,13 +2,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+const MenuContainer = styled.div`
   max-height: 10rem;
   overflow: scroll;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
-  left: ${(props) => String(props.menu.x + "px")};
-  top: ${(props) => String(props.menu.y + "px")};
+  left: ${(props) => String(props.location.x + 30 + "px")};
+  top: ${(props) => String(props.location.y + "px")};
 `;
 
 const UL = styled.ul`
@@ -22,15 +22,30 @@ const MenuOption = styled.li`
   padding: 0.5rem;
 `;
 
-function Menu({ menu, targets }) {
+const TargetBoxContainer = styled.div`
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: rgba(100, 100, 255, 0.7);
+  position: fixed;
+  left: ${(props) => String(props.location.x + "px")};
+  top: ${(props) => String(props.location.y + "px")};
+  transform: translate(-50%, -100%);
+  border: 2px dotted rgba(50, 50, 255, 0.7);
+`;
+
+function Menu({ location, targets }) {
   return (
-    <Container menu={menu}>
-      <UL>
-        {targets.map((target) => (
-          <MenuOption key={target.title}>{target.emoji}</MenuOption>
-        ))}
-      </UL>
-    </Container>
+    <>
+      <TargetBoxContainer location={location} />
+      <MenuContainer location={location}>
+        <UL>
+          {targets.map((target) => (
+            <MenuOption key={target.title}>{target.emoji}</MenuOption>
+          ))}
+        </UL>
+      </MenuContainer>
+    </>
   );
 }
 
