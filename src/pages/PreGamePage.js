@@ -1,6 +1,7 @@
 // Libraries
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Components
 import InfoBox from "../components/InfoBox";
@@ -44,7 +45,15 @@ function PreGamePage() {
         <SelectMap>Select map...</SelectMap>
         <MapsContainer>
           {maps.map((map) => (
-            <MapOption map={map} />
+            <Link
+              key={map.id}
+              to={{
+                pathname: "/game",
+                state: { map },
+              }}
+            >
+              <MapOption map={map} />
+            </Link>
           ))}
         </MapsContainer>
         <Button title={"Start"} />

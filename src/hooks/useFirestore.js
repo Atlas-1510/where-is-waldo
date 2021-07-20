@@ -1,4 +1,3 @@
-// Libraries
 import { useState, useEffect } from "react";
 import { firestore } from "../firebase/firebase";
 
