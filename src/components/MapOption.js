@@ -29,11 +29,11 @@ const MapTitle = styled.h4`
   padding: 0;
 `;
 
-function MapOption({ emoji, title }) {
+function MapOption({ map }) {
   return (
     <Container>
-      <Emoji>{emoji}</Emoji>
-      <MapTitle>{title}</MapTitle>
+      <Emoji>{map.emoji}</Emoji>
+      <MapTitle>{map.title}</MapTitle>
     </Container>
   );
 }

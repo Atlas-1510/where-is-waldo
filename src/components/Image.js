@@ -23,6 +23,8 @@ function Image({ image, targets }) {
 
   const handleClick = (e) => {
     if (!menu.open) {
+      console.log(`x: ${e.pageX}`);
+      console.log(`y: ${e.pageY}`);
       setMenu({
         open: true,
         x: e.pageX,

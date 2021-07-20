@@ -7,6 +7,9 @@ import InfoBox from "../components/InfoBox";
 import MapOption from "../components/MapOption";
 import Button from "../components/Button";
 
+// Firebase
+import useFirestore from "../hooks/useFirestore";
+
 const Container = styled.main`
   min-height: 100%;
   display: flex;
@@ -33,15 +36,16 @@ const MapsContainer = styled.div`
 `;
 
 function PreGamePage() {
+  const { docs: maps } = useFirestore("maps");
+  console.log(maps);
   return (
     <Container>
       <InfoBox>
         <SelectMap>Select map...</SelectMap>
         <MapsContainer>
-          <MapOption emoji={"🎶"} title={"The Best Festival Ever"} />
-          <MapOption emoji={"🔎"} title={"Classic Where's Waldo"} />
-          <MapOption emoji={"🥳"} title={"Another placeholder here"} />
-          <MapOption emoji={"🤬"} title={"Another option here"} />
+          {maps.map((map) => (
+            <MapOption map={map} />
+          ))}
         </MapsContainer>
         <Button title={"Start"} />
       </InfoBox>

@@ -23,14 +23,14 @@ const MenuOption = styled.li`
 `;
 
 const TargetBoxContainer = styled.div`
-  height: 3rem;
-  width: 3rem;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   background-color: rgba(100, 100, 255, 0.7);
   position: fixed;
   left: ${(props) => String(props.location.x + "px")};
   top: ${(props) => String(props.location.y + "px")};
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -50%);
   border: 2px dotted rgba(50, 50, 255, 0.7);
 `;
 
