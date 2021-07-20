@@ -54,7 +54,7 @@ function GamePage() {
   return (
     <Container>
       {!victory && <GameHeader targets={DummyTargets} />}
-      <Image image={TestImage} />
+      <Image image={TestImage} targets={DummyTargets} />
       {victory && <VictoryModal />}
     </Container>
   );
