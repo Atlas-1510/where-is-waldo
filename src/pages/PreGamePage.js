@@ -38,7 +38,6 @@ const MapsContainer = styled.div`
 
 function PreGamePage() {
   const { docs: maps } = useFirestore("maps");
-  console.log(maps);
   return (
     <Container>
       <InfoBox>

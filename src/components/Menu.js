@@ -34,14 +34,28 @@ const TargetBoxContainer = styled.div`
   border: 2px dotted rgba(50, 50, 255, 0.7);
 `;
 
-function Menu({ location, targets }) {
+function Menu({ location, targets, setTargets }) {
+  const handleClick = (menuChoice) => {
+    if (
+      Math.abs(location.x - menuChoice.x) < 30 &&
+      Math.abs(location.y - menuChoice.y) < 30
+    ) {
+      console.log(`You found ${menuChoice.title}!`);
+      const newTargets = targets.map((target) =>
+        target.title === menuChoice.title ? { ...target, found: true } : target
+      );
+      setTargets(newTargets);
+    }
+  };
   return (
     <>
       <TargetBoxContainer location={location} />
       <MenuContainer location={location}>
         <UL>
           {targets.map((target) => (
-            <MenuOption key={target.title}>{target.emoji}</MenuOption>
+            <MenuOption key={target.title} onClick={() => handleClick(target)}>
+              {target.emoji}
+            </MenuOption>
           ))}
         </UL>
       </MenuContainer>

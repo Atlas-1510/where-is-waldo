@@ -14,10 +14,11 @@ const Container = styled.div`
 
 const Img = styled.img`
   min-width: 100%;
-  max-width: 1000px;
+  min-height: 100%;
+  max-width: 1500px;
 `;
 
-function Image({ imageURL, targets }) {
+function Image({ imageURL, targets, setTargets }) {
   const downloadURL = useStorage(imageURL);
   const [menu, setMenu] = useState({
     open: false,
@@ -41,7 +42,9 @@ function Image({ imageURL, targets }) {
 
   return (
     <Container onClick={handleClick}>
-      {menu.open && <Menu location={menu} targets={targets} />}
+      {menu.open && (
+        <Menu location={menu} targets={targets} setTargets={setTargets} />
+      )}
       <Img src={downloadURL} alt="Characters hidden amid lots of detail" />
     </Container>
   );
