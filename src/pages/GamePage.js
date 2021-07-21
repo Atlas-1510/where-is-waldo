@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 // Components
@@ -12,11 +12,10 @@ const Container = styled.main`
   flex-direction: column;
 `;
 
-// TODO: Remove dumb victory flag
-const victory = false;
-
 function GamePage({ location }) {
   const [targets, setTargets] = useState([]);
+  const [victory, setVictory] = useState(false);
+
   useEffect(() => {
     const initTargets = location.state.map.targets;
     const newTargets = initTargets.map((target) => {
@@ -25,7 +24,15 @@ function GamePage({ location }) {
     setTargets(newTargets);
   }, [location]);
 
-  console.log(targets);
+  useEffect(() => {
+    console.log(targets);
+    if (targets.length !== 0) {
+      if (targets.every((target) => target.found)) {
+        console.log("victory!");
+        setVictory(true);
+      }
+    }
+  }, [targets]);
 
   const imageURL = location.state.map.storageURL;
   return (
