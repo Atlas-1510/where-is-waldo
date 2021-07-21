@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import InfoBox from "../components/InfoBox";
 import MapOption from "../components/MapOption";
 import Button from "../components/Button";
+import RedWhiteBlueBackground from "../components/RedWhiteBlueBackground";
 
 // Firebase
 import useFirestore from "../hooks/useFirestore";
@@ -27,7 +28,7 @@ const MapsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightblue;
+  ${"" /* background-color: lightblue; */}
 
   @media (max-width: 600px) {
     display: grid;
@@ -36,15 +37,21 @@ const MapsContainer = styled.div`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+
 function PreGamePage() {
   const { docs: maps } = useFirestore("maps");
   return (
     <Container>
+      <RedWhiteBlueBackground />
       <InfoBox>
         <SelectMap>Select map...</SelectMap>
         <MapsContainer>
           {maps.map((map) => (
-            <Link
+            <StyledLink
               key={map.id}
               to={{
                 pathname: "/game",
@@ -52,10 +59,9 @@ function PreGamePage() {
               }}
             >
               <MapOption map={map} />
-            </Link>
+            </StyledLink>
           ))}
         </MapsContainer>
-        <Button title={"Start"} />
       </InfoBox>
     </Container>
   );

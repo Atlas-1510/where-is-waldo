@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // Components
@@ -37,7 +37,7 @@ function GamePage({ location }) {
   const imageURL = location.state.map.storageURL;
   return (
     <Container>
-      {!victory && <GameHeader targets={targets} />}
+      <GameHeader targets={targets} />
       <Image imageURL={imageURL} targets={targets} setTargets={setTargets} />
       {victory && <VictoryModal />}
     </Container>

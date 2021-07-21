@@ -7,6 +7,7 @@ import Menu from "./Menu";
 
 // Firestore
 import useStorage from "../hooks/useStorage.js";
+import TargetBoxContainer from "./TargetBoxContainer";
 
 const Container = styled.div`
   overflow: scroll;
@@ -46,6 +47,12 @@ function Image({ imageURL, targets, setTargets }) {
         <Menu location={menu} targets={targets} setTargets={setTargets} />
       )}
       <Img src={downloadURL} alt="Characters hidden amid lots of detail" />
+      {targets.map(
+        (target) =>
+          target.found && (
+            <TargetBoxContainer key={target.title} location={target} />
+          )
+      )}
     </Container>
   );
 }
