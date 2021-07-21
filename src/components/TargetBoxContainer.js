@@ -5,7 +5,7 @@ const TargetBoxContainer = styled.div`
   width: 50px;
   border-radius: 50%;
   background-color: rgba(100, 100, 255, 0.7);
-  position: fixed;
+  position: absolute;
   left: ${(props) => String(props.location.x + "px")};
   top: ${(props) => String(props.location.y + "px")};
   transform: translate(-50%, -50%);

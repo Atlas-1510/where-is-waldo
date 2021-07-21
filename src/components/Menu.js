@@ -25,20 +25,10 @@ const MenuOption = styled.li`
   padding: 0.5rem;
 `;
 
-// const TargetBoxContainer = styled.div`
-//   height: 50px;
-//   width: 50px;
-//   border-radius: 50%;
-//   background-color: rgba(100, 100, 255, 0.7);
-//   position: fixed;
-//   left: ${(props) => String(props.location.x + "px")};
-//   top: ${(props) => String(props.location.y + "px")};
-//   transform: translate(-50%, -50%);
-//   border: 2px dotted rgba(50, 50, 255, 0.7);
-// `;
-
 function Menu({ location, targets, setTargets }) {
   const handleClick = (menuChoice) => {
+    console.log("click");
+    console.log(location.x, menuChoice.x);
     if (
       Math.abs(location.x - menuChoice.x) < 30 &&
       Math.abs(location.y - menuChoice.y) < 30

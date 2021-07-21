@@ -10,13 +10,13 @@ import useStorage from "../hooks/useStorage.js";
 import TargetBoxContainer from "./TargetBoxContainer";
 
 const Container = styled.div`
-  overflow: scroll;
+  ${"" /* overflow: scroll; */}
 `;
 
 const Img = styled.img`
-  min-width: 100%;
-  min-height: 100%;
-  max-width: 1500px;
+  max-width: 100%;
+  max-height: 100%;
+  ${"" /* max-width: 1500px; */}
 `;
 
 function Image({ imageURL, targets, setTargets }) {
