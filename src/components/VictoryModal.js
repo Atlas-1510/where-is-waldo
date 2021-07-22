@@ -6,8 +6,8 @@ import styled from "styled-components";
 import InfoBox from "./InfoBox";
 import Button from "./Button";
 
-// Firebase
-import { timeStamp, firestore } from "../firebase/firebase";
+// Hooks
+import useEndTimer from "../hooks/useEndTimer";
 
 const Container = styled.div`
   position: absolute;
@@ -22,32 +22,12 @@ const Container = styled.div`
 `;
 
 function VictoryModal({ timerID }) {
-  (async () => {
-    const timerRef = firestore.collection("timers").doc(timerID);
-
-    await timerRef.set(
-      {
-        endedAt: timeStamp,
-      },
-      { merge: true }
-    );
-
-    const timer = await timerRef.get().then((doc) => doc.data());
-
-    const startTime = timer.createdAt.seconds;
-    const endTime = timer.endedAt.seconds;
-
-    const timeElapsed = new Date((endTime - startTime) * 1000)
-      .toISOString()
-      .substr(11, 8);
-
-    console.log(timeElapsed);
-  })();
+  const timeElapsed = useEndTimer(timerID);
 
   return (
     <Container>
       <InfoBox>
-        <h1>Time: 01:13</h1>
+        <h1>Time: {timeElapsed}</h1>
         <h1>Rank: 12th</h1>
         <h2>You were faster than 24% of players. Nice!</h2>
         <form>
