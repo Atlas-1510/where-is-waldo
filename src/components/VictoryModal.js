@@ -1,6 +1,7 @@
 // Libraries
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Components
 import InfoBox from "./InfoBox";
@@ -37,7 +38,9 @@ function VictoryModal({ timerID }) {
           <input type="text" id="highscore-name" placeholder="Name"></input>
         </form>
         <div>
-          <Button title={"Play Again"} />
+          <Link exact to="/">
+            <Button title={"Play Again"} />
+          </Link>
           <Button title={"View high scores"} />
         </div>
       </InfoBox>
