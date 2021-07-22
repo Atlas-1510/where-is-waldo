@@ -11,7 +11,7 @@ const Container = styled.div`
 `;
 
 function Timer({ timerID }) {
-  const [elapsedTime, setElapsedTime] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState("00:00:00");
 
   useEffect(() => {
     let startTime;
@@ -23,7 +23,10 @@ function Timer({ timerID }) {
     })();
 
     const timer = setInterval(() => {
-      setElapsedTime(Math.floor((Date.now() - startTime) / 1000));
+      const newTime = new Date(Date.now() - startTime)
+        .toISOString()
+        .substr(11, 8);
+      setElapsedTime(newTime);
     }, 1000);
     return () => {
       clearInterval(timer);
