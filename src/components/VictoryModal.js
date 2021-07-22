@@ -29,8 +29,6 @@ function VictoryModal({ timerID }) {
     <Container>
       <InfoBox>
         <h1>Time: {timeElapsed}</h1>
-        <h1>Rank: 12th</h1>
-        <h2>You were faster than 24% of players. Nice!</h2>
         <form>
           <label htmlFor="highscore-name">
             Enter your name to save your score!

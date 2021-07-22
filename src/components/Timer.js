@@ -31,7 +31,7 @@ function Timer({ timerID }) {
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [timerID]);
 
   return (
     <Container>

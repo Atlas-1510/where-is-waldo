@@ -40,7 +40,9 @@ function GamePage({ location }) {
 
   return (
     <Container>
-      {timerID && <GameHeader targets={targets} timerID={timerID} />}
+      {timerID && (
+        <GameHeader targets={targets} timerID={timerID} victory={victory} />
+      )}
       <Image imageURL={imageURL} targets={targets} setTargets={setTargets} />
       {victory && <VictoryModal timerID={timerID} />}
     </Container>

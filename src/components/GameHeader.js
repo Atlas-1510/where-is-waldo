@@ -6,11 +6,11 @@ import Header from "./Header";
 import Targets from "./Targets";
 import Timer from "./Timer";
 
-function GameHeader({ targets, timerID }) {
+function GameHeader({ targets, timerID, victory }) {
   return (
     <Header>
       <Targets targets={targets} />
-      <Timer timerID={timerID} />
+      {!victory && <Timer timerID={timerID} />}
     </Header>
   );
 }
