@@ -7,8 +7,8 @@ import GameHeader from "../components/GameHeader";
 import Image from "../components/Image";
 import VictoryModal from "../components/VictoryModal";
 
-// Firebase
-import { timeStamp, firestore } from "../firebase/firebase";
+// Hooks
+import useStartTimer from "../hooks/useStartTimer";
 
 const Container = styled.main`
   display: flex;
@@ -18,7 +18,7 @@ const Container = styled.main`
 function GamePage({ location }) {
   const [targets, setTargets] = useState([]);
   const [victory, setVictory] = useState(false);
-  const [timerID, setTimerID] = useState(null);
+  const timerID = useStartTimer(location);
   const imageURL = location.state.map.storageURL;
 
   useEffect(() => {
@@ -27,13 +27,6 @@ function GamePage({ location }) {
       return { ...target, found: false };
     });
     setTargets(newTargets);
-
-    (async () => {
-      const docRef = await firestore.collection("timers").add({
-        createdAt: timeStamp,
-      });
-      setTimerID(docRef.id);
-    })();
   }, [location]);
 
   useEffect(() => {

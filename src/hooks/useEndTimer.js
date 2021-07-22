@@ -18,6 +18,7 @@ export default function useEndTimer(timerID) {
       );
 
       const timer = await timerRef.get().then((doc) => doc.data());
+      console.log(timer);
 
       const startTime = timer.createdAt.seconds;
       const endTime = timer.endedAt.seconds;
@@ -32,7 +33,7 @@ export default function useEndTimer(timerID) {
     return () => {
       timerRef.delete();
     };
-  }, [timerRef]);
+  }, []);
 
   return timeElapsed;
 }
