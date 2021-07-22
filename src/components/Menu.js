@@ -27,8 +27,6 @@ const MenuOption = styled.li`
 
 function Menu({ location, targets, setTargets }) {
   const handleClick = (menuChoice) => {
-    console.log("click");
-    console.log(location.x, menuChoice.x);
     if (
       Math.abs(location.x - menuChoice.x) < 30 &&
       Math.abs(location.y - menuChoice.y) < 30
