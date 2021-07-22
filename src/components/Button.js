@@ -6,8 +6,8 @@ const Container = styled.button`
   margin: 1rem;
 `;
 
-function Button({ title }) {
-  return <Container>{title}</Container>;
+function Button({ title, onClick }) {
+  return <Container onClick={onClick}>{title}</Container>;
 }
 
 export default Button;

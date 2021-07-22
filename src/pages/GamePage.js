@@ -6,6 +6,8 @@ import styled from "styled-components";
 import GameHeader from "../components/GameHeader";
 import Image from "../components/Image";
 import VictoryModal from "../components/VictoryModal";
+import HighScoresModal from "../components/HighScoresModal";
+import DimBackGround from "../components/DimBackGround";
 
 // Hooks
 import useStartTimer from "../hooks/useStartTimer";
@@ -18,6 +20,8 @@ const Container = styled.main`
 function GamePage({ location }) {
   const [targets, setTargets] = useState([]);
   const [victory, setVictory] = useState(false);
+  const [victoryModalOpen, setVictoryModalOpen] = useState(false);
+  const [scoresOpen, setScoresOpen] = useState(false);
   const timerID = useStartTimer(location);
   const imageURL = location.state.map.storageURL;
 
@@ -38,13 +42,34 @@ function GamePage({ location }) {
     }
   }, [targets]);
 
+  useEffect(() => {
+    if (victory) {
+      setVictoryModalOpen(true);
+    }
+  }, [victory]);
+
+  useEffect(() => {
+    if (scoresOpen) {
+      setVictoryModalOpen(false);
+    }
+  }, [scoresOpen]);
+
   return (
     <Container>
       {timerID && (
         <GameHeader targets={targets} timerID={timerID} victory={victory} />
       )}
       <Image imageURL={imageURL} targets={targets} setTargets={setTargets} />
-      {victory && <VictoryModal timerID={timerID} />}
+      {victory && (
+        <>
+          <DimBackGround>
+            {victoryModalOpen && (
+              <VictoryModal timerID={timerID} setScoresOpen={setScoresOpen} />
+            )}
+            {scoresOpen && <HighScoresModal mapID={location.state.map.id} />}
+          </DimBackGround>
+        </>
+      )}
     </Container>
   );
 }
