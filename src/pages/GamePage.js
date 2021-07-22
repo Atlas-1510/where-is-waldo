@@ -64,7 +64,11 @@ function GamePage({ location }) {
         <>
           <DimBackGround>
             {victoryModalOpen && (
-              <VictoryModal timerID={timerID} setScoresOpen={setScoresOpen} />
+              <VictoryModal
+                timerID={timerID}
+                setScoresOpen={setScoresOpen}
+                mapID={location.state.map.id}
+              />
             )}
             {scoresOpen && <HighScoresModal mapID={location.state.map.id} />}
           </DimBackGround>

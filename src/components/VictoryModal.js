@@ -9,17 +9,32 @@ import Button from "./Button";
 // Hooks
 import useEndTimer from "../hooks/useEndTimer";
 
-function VictoryModal({ timerID, setScoresOpen }) {
-  const timeElapsed = useEndTimer(timerID);
+// Firebase
+import { firestore } from "../firebase/firebase";
+
+function VictoryModal({ timerID, setScoresOpen, mapID }) {
+  const time = useEndTimer(timerID);
+
+  const handleScoreSubmit = (e) => {
+    e.preventDefault();
+    const title = e.target[0].value;
+    const newScore = {
+      title,
+      time: time,
+    };
+
+    firestore.collection(`maps/${mapID}/scores`).add(newScore);
+  };
 
   return (
     <InfoBox>
-      <h1>Time: {timeElapsed}</h1>
-      <form>
+      <h1>Time: {time}</h1>
+      <form onSubmit={handleScoreSubmit}>
         <label htmlFor="highscore-name">
           Enter your name to save your score!
         </label>
         <input type="text" id="highscore-name" placeholder="Name"></input>
+        <Button title={"Submit"} type="submit" />
       </form>
       <div>
         <Link exact to="/">

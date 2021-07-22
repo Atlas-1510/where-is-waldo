@@ -6,8 +6,12 @@ const Container = styled.button`
   margin: 1rem;
 `;
 
-function Button({ title, onClick }) {
-  return <Container onClick={onClick}>{title}</Container>;
+function Button({ title, onClick, type }) {
+  return (
+    <Container onClick={onClick} type={type}>
+      {title}
+    </Container>
+  );
 }
 
 export default Button;
