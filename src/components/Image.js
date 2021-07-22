@@ -9,14 +9,11 @@ import Menu from "./Menu";
 import useStorage from "../hooks/useStorage.js";
 import TargetBoxContainer from "./TargetBoxContainer";
 
-const Container = styled.div`
-  ${"" /* overflow: scroll; */}
-`;
+const Container = styled.div``;
 
 const Img = styled.img`
   max-width: 100%;
   max-height: 100%;
-  ${"" /* max-width: 1500px; */}
 `;
 
 function Image({ imageURL, targets, setTargets }) {
