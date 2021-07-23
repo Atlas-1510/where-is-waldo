@@ -17,7 +17,8 @@ function VictoryModal({ timerID, setScoresOpen, mapID, setVictoryModalOpen }) {
 
   const handleScoreSubmit = (e) => {
     e.preventDefault();
-    const title = e.target[0].value;
+    const title =
+      e.target[0].value.length === 0 ? "Anonymous" : e.target[0].value;
     const newScore = {
       title,
       time: time,
