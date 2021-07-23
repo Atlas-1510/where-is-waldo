@@ -1,9 +1,11 @@
 // Libraries
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Components
 import InfoBox from "./InfoBox";
+import Button from "./Button";
 
 // Hooks
 import useFirestore from "../hooks/useFirestore";
@@ -72,6 +74,9 @@ function HighScoresModal({ mapID }) {
           ))}
         </tbody>
       </Table>
+      <Link exact to="/">
+        <Button title={"Play Again"} />
+      </Link>
     </InfoBox>
   );
 }
