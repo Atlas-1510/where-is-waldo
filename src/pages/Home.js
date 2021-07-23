@@ -5,6 +5,8 @@ import Card from "../components/Card";
 
 // Components
 import Logo from "../components/Logo";
+import Button from "../components/Button";
+import Footer from "../components/Footer";
 
 // TODO: remove test image, pull from firebase
 import levelOne from "../maps/level-1.jpg";
@@ -45,40 +47,78 @@ const CardContainer = styled.section`
   }
 `;
 
-function Home() {
-  const levels = [
-    {
-      image: levelOne,
-      title: "Level One",
-      targets: [waldo, odlaw, wizard],
-    },
-    {
-      image: levelTwo,
-      title: "Level Two",
-      targets: [waldo],
-    },
-    {
-      image: levelThree,
-      title: "Level Three",
-      targets: [waldo, odlaw, wenda, wizard],
-    },
-    {
-      image: levelFour,
-      title: "Level Four",
-      targets: [waldo, odlaw],
-    },
-    {
-      image: levelFive,
-      title: "Level Five",
-      targets: [waldo, odlaw, wenda, wizard],
-    },
-    {
-      image: levelSix,
-      title: "Level Six",
-      targets: [waldo],
-    },
-  ];
+const LeaderBoardBanner = styled.div`
+  background-color: white;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem 10rem 2rem 10rem;
+  border-radius: 15px;
 
+  @media (max-width: 600px) {
+    margin: 1rem;
+  }
+`;
+
+const Title = styled.div`
+  font-family: "Raleway", sans-serif;
+  font-size: 3rem;
+  margin: 1rem;
+
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const Div = styled.div`
+  color: ${(props) => props.color};
+`;
+
+const StyledButton = styled(Button)`
+  margin-right: 2rem;
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    margin-right: 1rem;
+  }
+`;
+
+// TODO: Replace hardcoded levels with firebase implementation
+const levels = [
+  {
+    image: levelOne,
+    title: "Level One",
+    targets: [waldo, odlaw, wizard],
+  },
+  {
+    image: levelTwo,
+    title: "Level Two",
+    targets: [waldo],
+  },
+  {
+    image: levelThree,
+    title: "Level Three",
+    targets: [waldo, odlaw, wenda, wizard],
+  },
+  {
+    image: levelFour,
+    title: "Level Four",
+    targets: [waldo, odlaw],
+  },
+  {
+    image: levelFive,
+    title: "Level Five",
+    targets: [waldo, odlaw, wenda, wizard],
+  },
+  {
+    image: levelSix,
+    title: "Level Six",
+    targets: [waldo],
+  },
+];
+
+function Home() {
   return (
     <Container>
       <Header>
@@ -89,6 +129,14 @@ function Home() {
           <Card key={level.title} level={level} />
         ))}
       </CardContainer>
+      <LeaderBoardBanner>
+        <Title>
+          <Div color="#118ab2">Are you a Waldo expert?</Div>
+          <Div color="#e63946">See the leaderboard</Div>
+        </Title>
+        <StyledButton primary>View Leaderboard</StyledButton>
+      </LeaderBoardBanner>
+      <Footer />
     </Container>
   );
 }

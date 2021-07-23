@@ -37,8 +37,8 @@ function Logo() {
     <Container>
       <WaldoImage src={waldoWave} />
       <Title>
-        <Span color="#8EB5CD">Where's </Span>{" "}
-        <Span color="#D07681"> Waldo?</Span>
+        <Span color="#118ab2">Where's </Span>{" "}
+        <Span color="#e63946"> Waldo?</Span>
       </Title>
     </Container>
   );
