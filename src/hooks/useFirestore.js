@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
 import { firestore } from "../firebase/firebase";
 
-export default function useFirestore(collection) {
+export default function useFirestore(collection, orderBy) {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-    const unsub = firestore.collection(collection).onSnapshot((snap) => {
+    let ref;
+    if (!orderBy) {
+      ref = firestore.collection(collection);
+    } else {
+      console.log("register orderbY");
+      ref = firestore.collection(collection).orderBy(orderBy);
+    }
+    const unsub = ref.onSnapshot((snap) => {
       let documents = [];
       snap.forEach((doc) => {
         documents.push({ ...doc.data(), id: doc.id });
@@ -13,7 +20,7 @@ export default function useFirestore(collection) {
       setDocs(documents);
     });
     return () => unsub();
-  }, [collection]);
+  }, [collection, orderBy]);
 
   return { docs };
 }

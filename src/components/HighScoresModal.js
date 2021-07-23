@@ -54,8 +54,7 @@ const testScores = [
 
 function HighScoresModal({ mapID }) {
   // TODO pass mapID in ref string to useFirestore
-  const { docs: scores } = useFirestore(`maps/${mapID}/scores`);
-  console.log(scores);
+  const { docs: scores } = useFirestore(`maps/${mapID}/scores`, "time");
 
   return (
     <InfoBox>
