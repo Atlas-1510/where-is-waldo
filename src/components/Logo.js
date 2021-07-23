@@ -12,12 +12,20 @@ const Container = styled.div`
 
 const WaldoImage = styled.img`
   width: 6rem;
+
+  @media (max-width: 600px) {
+    width: 3rem;
+  }
 `;
 
 const Title = styled.div`
   font-family: "Raleway", sans-serif;
   font-size: 3rem;
   margin: 1rem;
+
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Span = styled.span`
