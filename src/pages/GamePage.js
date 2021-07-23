@@ -67,6 +67,7 @@ function GamePage({ location }) {
               <VictoryModal
                 timerID={timerID}
                 setScoresOpen={setScoresOpen}
+                setVictoryModalOpen={setVictoryModalOpen}
                 mapID={location.state.map.id}
               />
             )}

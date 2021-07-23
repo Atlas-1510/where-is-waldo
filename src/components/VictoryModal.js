@@ -12,7 +12,7 @@ import useEndTimer from "../hooks/useEndTimer";
 // Firebase
 import { firestore } from "../firebase/firebase";
 
-function VictoryModal({ timerID, setScoresOpen, mapID }) {
+function VictoryModal({ timerID, setScoresOpen, mapID, setVictoryModalOpen }) {
   const time = useEndTimer(timerID);
 
   const handleScoreSubmit = (e) => {
@@ -24,6 +24,8 @@ function VictoryModal({ timerID, setScoresOpen, mapID }) {
     };
 
     firestore.collection(`maps/${mapID}/scores`).add(newScore);
+    setScoresOpen(true);
+    setVictoryModalOpen(false);
   };
 
   return (
