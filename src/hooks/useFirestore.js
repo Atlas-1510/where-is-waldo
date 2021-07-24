@@ -9,7 +9,6 @@ export default function useFirestore(collection, orderBy) {
     if (!orderBy) {
       ref = firestore.collection(collection);
     } else {
-      console.log("register orderbY");
       ref = firestore.collection(collection).orderBy(orderBy);
     }
     const unsub = ref.onSnapshot((snap) => {

@@ -62,7 +62,7 @@ function Menu({ targets, location, containerRef }) {
     <Container coords={coords}>
       <UL>
         {targets.map((target) => (
-          <Target target={target} />
+          <Target key={target.name} target={target} />
         ))}
       </UL>
     </Container>

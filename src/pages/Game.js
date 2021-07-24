@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 // Components
@@ -73,6 +73,9 @@ function Game({ location }) {
 
       const relativeX = clickOffsetFromCornerX / imageWidth;
       const relativeY = clickOffsetFromCornerY / imageHeight;
+
+      console.log(`relativeX: ${relativeX}`);
+      console.log(`relativeY: ${relativeY}`);
 
       setTargetBox({
         open: true,

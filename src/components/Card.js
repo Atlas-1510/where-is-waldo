@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 // Hooks
-import useStorage from "../hooks/useStorage";
+import { storage } from "../firebase/firebase";
 
 const Container = styled.div`
   display: flex;
@@ -64,29 +64,70 @@ const StyledLink = styled(Link)`
   color: black;
 `;
 
-function Card({ level }) {
+function Card({ levelInfo }) {
+  const [level, setLevel] = useState(null);
+
+  // These functions unpack the info from firestore and convert into usable assets
+  async function getImageFromFirestore(url) {
+    const ref = storage.refFromURL(url);
+    const mapImage = await ref
+      .getDownloadURL()
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => console.log(err));
+
+    return mapImage;
+  }
+  const getTargetImages = (targets) => {
+    const promises = targets.map(async (target) => {
+      return {
+        ...target,
+        image: await getImageFromFirestore(target.image),
+      };
+    });
+    return Promise.all(promises);
+  };
+
+  useEffect(() => {
+    (async function getLevelImages() {
+      const map = await getImageFromFirestore(levelInfo.image);
+      const targets = await getTargetImages(levelInfo.targets);
+
+      setLevel({
+        ...levelInfo,
+        image: map,
+        targets,
+      });
+    })();
+  }, []);
+
   return (
-    <StyledLink
-      to={{
-        pathname: "/game",
-        state: { level },
-      }}
-      exact="true"
-    >
-      <Container>
-        <ImageContainer>
-          <Image src={level.image} />
-        </ImageContainer>
-        <LevelInfo>
-          <LevelTitle>{level.title}</LevelTitle>
-          <TargetContainer>
-            {level.targets.map((target) => (
-              <TargetImage key={target.name} src={target.image} />
-            ))}
-          </TargetContainer>
-        </LevelInfo>
-      </Container>
-    </StyledLink>
+    <>
+      {level && (
+        <StyledLink
+          to={{
+            pathname: "/game",
+            state: { level },
+          }}
+          exact="true"
+        >
+          <Container>
+            <ImageContainer>
+              <Image src={level.image} />
+            </ImageContainer>
+            <LevelInfo>
+              <LevelTitle>{level.title}</LevelTitle>
+              <TargetContainer>
+                {level.targets.map((target) => (
+                  <TargetImage key={target.name} src={target.image} />
+                ))}
+              </TargetContainer>
+            </LevelInfo>
+          </Container>
+        </StyledLink>
+      )}
+    </>
   );
 }
 

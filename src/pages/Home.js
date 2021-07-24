@@ -12,19 +12,19 @@ import Footer from "../components/Footer";
 // Hooks
 import useFirestore from "../hooks/useFirestore";
 
-// TODO: remove test image, pull from firebase
-import levelOne from "../maps/level-1.jpg";
-import levelTwo from "../maps/level-2.jpg";
-import levelThree from "../maps/level-3.jpg";
-import levelFour from "../maps/level-4.jpg";
-import levelFive from "../maps/level-5.jpg";
-import levelSix from "../maps/level-6.jpg";
+// // TODO: remove test image, pull from firebase
+// import levelOne from "../maps/level-1.jpg";
+// import levelTwo from "../maps/level-2.jpg";
+// import levelThree from "../maps/level-3.jpg";
+// import levelFour from "../maps/level-4.jpg";
+// import levelFive from "../maps/level-5.jpg";
+// import levelSix from "../maps/level-6.jpg";
 
-//TODO: remove test targets, pull from firebase
-import waldo from "../img/waldo.jpg";
-import odlaw from "../img/odlaw.jpg";
-import wenda from "../img/wenda.jpg";
-import wizard from "../img/wizard.jpg";
+// //TODO: remove test targets, pull from firebase
+// import waldo from "../img/waldo.jpg";
+// import odlaw from "../img/odlaw.jpg";
+// import wenda from "../img/wenda.jpg";
+// import wizard from "../img/wizard.jpg";
 
 const Container = styled.main`
   display: flex;
@@ -134,6 +134,7 @@ const StyledButton = styled(Button)`
 
 function Home() {
   const { docs: levels } = useFirestore("levels", "level");
+  // const { docs: levels } = useFirestore("testLevel");
   return (
     <Container>
       <Header>
@@ -141,7 +142,7 @@ function Home() {
       </Header>
       <CardContainer>
         {levels.map((level) => (
-          <Card key={level.title} level={level} />
+          <Card key={level.title} levelInfo={level} />
         ))}
       </CardContainer>
       <LeaderBoardBanner>
