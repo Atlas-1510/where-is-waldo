@@ -40,7 +40,7 @@ const StyledLink = styled(Link)`
 
 function Logo() {
   return (
-    <StyledLink exact to="/">
+    <StyledLink exact="true" to="/">
       <Container>
         <WaldoImage src={waldoWave} />
         <Title>

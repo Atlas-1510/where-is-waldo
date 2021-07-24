@@ -68,6 +68,7 @@ function Card({ level }) {
         pathname: "/game",
         state: { level },
       }}
+      exact="true"
     >
       <Container>
         <ImageContainer>

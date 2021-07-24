@@ -1,13 +1,13 @@
 // Libraries
-import React from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 // Components
 import Header from "../components/Header";
 import Logo from "../components/Logo";
-import Button from "../components/Button";
 import Footer from "../components/Footer";
 import Target from "../components/Target";
+import TargetBox from "../components/TargetBox";
 
 const Container = styled.main`
   display: flex;
@@ -44,8 +44,62 @@ const Image = styled.img`
 `;
 
 function Game({ location }) {
+  const [menu, setMenu] = useState({
+    open: false,
+    relativeX: null,
+    relativeY: null,
+  });
+  const [targetBox, setTargetBox] = useState({
+    open: false,
+    relativeX: null,
+    relativeY: null,
+  });
   const level = location.state.level;
-  console.log(level);
+  const imageRef = useRef();
+  const handleClick = (e) => {
+    if (!menu.open) {
+      const imageTopLeftX = imageRef.current.offsetLeft;
+      const imageTopLeftY = imageRef.current.offsetTop;
+
+      const imageWidth = imageRef.current.offsetWidth;
+      const imageHeight = imageRef.current.offsetHeight;
+
+      const clickLocationX = e.pageX;
+      const clickLocationY = e.pageY;
+
+      const clickOffsetFromCornerX = clickLocationX - imageTopLeftX;
+      const clickOffsetFromCornerY = clickLocationY - imageTopLeftY;
+
+      const relativeX = clickOffsetFromCornerX / imageWidth;
+      const relativeY = clickOffsetFromCornerY / imageHeight;
+
+      console.log(`relativeX: ${relativeX}`);
+      console.log(`relativeY: ${relativeY}`);
+
+      setTargetBox({
+        open: true,
+        relativeX,
+        relativeY,
+      });
+      // TODO: Offset menu, adjust for page width so not offscreen
+      setMenu({
+        open: true,
+        relativeX,
+        relativeY,
+      });
+    } else if (menu.open) {
+      setTargetBox({
+        open: false,
+        relativeX: null,
+        relativeY: null,
+      });
+      setMenu({
+        open: false,
+        relativeX: null,
+        relativeY: null,
+      });
+    }
+  };
   return (
     <Container>
       <StyledHeader>
@@ -58,7 +112,10 @@ function Game({ location }) {
         </TargetsContainer>
       </StyledHeader>
       <ImageContainer>
-        <Image src={level.image} />
+        {targetBox.open && (
+          <TargetBox location={targetBox} containerRef={imageRef} />
+        )}
+        <Image ref={imageRef} src={level.image} onClick={handleClick} />
       </ImageContainer>
       <Footer />
     </Container>
