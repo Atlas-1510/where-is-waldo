@@ -3,7 +3,6 @@ import { storage } from "../firebase/firebase";
 
 export default function useStorage(url) {
   const [downloadURL, setDownloadURL] = useState(null);
-
   useEffect(() => {
     const ref = storage.refFromURL(url);
     ref

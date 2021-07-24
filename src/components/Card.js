@@ -1,7 +1,10 @@
 // Libraries
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+
+// Hooks
+import useStorage from "../hooks/useStorage";
 
 const Container = styled.div`
   display: flex;

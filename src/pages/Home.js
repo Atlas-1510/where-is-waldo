@@ -9,6 +9,9 @@ import Logo from "../components/Logo";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
 
+// Hooks
+import useFirestore from "../hooks/useFirestore";
+
 // TODO: remove test image, pull from firebase
 import levelOne from "../maps/level-1.jpg";
 import levelTwo from "../maps/level-2.jpg";
@@ -79,57 +82,58 @@ const StyledButton = styled(Button)`
 `;
 
 // TODO: Replace hardcoded levels with firebase implementation
-const levels = [
-  {
-    image: levelOne,
-    title: "Level One",
-    targets: [
-      { name: "Waldo", image: waldo },
-      { name: "Odlaw", image: odlaw },
-      { name: "Wizard", image: wizard },
-    ],
-  },
-  {
-    image: levelTwo,
-    title: "Level Two",
-    targets: [{ name: "Waldo", image: waldo }],
-  },
-  {
-    image: levelThree,
-    title: "Level Three",
-    targets: [
-      { name: "Waldo", image: waldo },
-      { name: "Odlaw", image: odlaw },
-      { name: "Wenda", image: wenda },
-      { name: "Wizard", image: wizard },
-    ],
-  },
-  {
-    image: levelFour,
-    title: "Level Four",
-    targets: [
-      { name: "Waldo", image: waldo },
-      { name: "Odlaw", image: odlaw },
-    ],
-  },
-  {
-    image: levelFive,
-    title: "Level Five",
-    targets: [
-      { name: "Waldo", image: waldo },
-      { name: "Odlaw", image: odlaw },
-      { name: "Wenda", image: wenda },
-      { name: "Wizard", image: wizard },
-    ],
-  },
-  {
-    image: levelSix,
-    title: "Level Six",
-    targets: [{ name: "Waldo", image: waldo }],
-  },
-];
+// const levels = [
+//   {
+//     image: levelOne,
+//     title: "Level One",
+//     targets: [
+//       { name: "Waldo", image: waldo },
+//       { name: "Odlaw", image: odlaw },
+//       { name: "Wizard", image: wizard },
+//     ],
+//   },
+//   {
+//     image: levelTwo,
+//     title: "Level Two",
+//     targets: [{ name: "Waldo", image: waldo }],
+//   },
+//   {
+//     image: levelThree,
+//     title: "Level Three",
+//     targets: [
+//       { name: "Waldo", image: waldo },
+//       { name: "Odlaw", image: odlaw },
+//       { name: "Wenda", image: wenda },
+//       { name: "Wizard", image: wizard },
+//     ],
+//   },
+//   {
+//     image: levelFour,
+//     title: "Level Four",
+//     targets: [
+//       { name: "Waldo", image: waldo },
+//       { name: "Odlaw", image: odlaw },
+//     ],
+//   },
+//   {
+//     image: levelFive,
+//     title: "Level Five",
+//     targets: [
+//       { name: "Waldo", image: waldo },
+//       { name: "Odlaw", image: odlaw },
+//       { name: "Wenda", image: wenda },
+//       { name: "Wizard", image: wizard },
+//     ],
+//   },
+//   {
+//     image: levelSix,
+//     title: "Level Six",
+//     targets: [{ name: "Waldo", image: waldo }],
+//   },
+// ];
 
 function Home() {
+  const { docs: levels } = useFirestore("levels", "level");
   return (
     <Container>
       <Header>
