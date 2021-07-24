@@ -27,7 +27,6 @@ function TargetBox({ location, containerRef }) {
   });
   useEffect(() => {
     const update = () => {
-      console.log("change");
       const x =
         location.relativeX * containerRef.current.offsetWidth +
         containerRef.current.offsetLeft;

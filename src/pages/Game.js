@@ -8,6 +8,7 @@ import Logo from "../components/Logo";
 import Footer from "../components/Footer";
 import Target from "../components/Target";
 import TargetBox from "../components/TargetBox";
+import Menu from "../components/Menu";
 
 const Container = styled.main`
   display: flex;
@@ -73,9 +74,6 @@ function Game({ location }) {
       const relativeX = clickOffsetFromCornerX / imageWidth;
       const relativeY = clickOffsetFromCornerY / imageHeight;
 
-      console.log(`relativeX: ${relativeX}`);
-      console.log(`relativeY: ${relativeY}`);
-
       setTargetBox({
         open: true,
         relativeX,
@@ -114,6 +112,13 @@ function Game({ location }) {
       <ImageContainer>
         {targetBox.open && (
           <TargetBox location={targetBox} containerRef={imageRef} />
+        )}
+        {menu.open && (
+          <Menu
+            targets={level.targets}
+            location={menu}
+            containerRef={imageRef}
+          />
         )}
         <Image ref={imageRef} src={level.image} onClick={handleClick} />
       </ImageContainer>
