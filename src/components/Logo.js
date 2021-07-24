@@ -1,6 +1,7 @@
 // Libraries
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Assets
 import waldoWave from "../img/waldo-wave.jpg";
@@ -33,15 +34,21 @@ const Span = styled.span`
   color: ${(props) => props.color};
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 function Logo() {
   return (
-    <Container>
-      <WaldoImage src={waldoWave} />
-      <Title>
-        <Span color="#118ab2">Where's </Span>{" "}
-        <Span color="#e63946"> Waldo?</Span>
-      </Title>
-    </Container>
+    <StyledLink exact to="/">
+      <Container>
+        <WaldoImage src={waldoWave} />
+        <Title>
+          <Span color="#118ab2">Where's </Span>{" "}
+          <Span color="#e63946"> Waldo?</Span>
+        </Title>
+      </Container>
+    </StyledLink>
   );
 }
 
