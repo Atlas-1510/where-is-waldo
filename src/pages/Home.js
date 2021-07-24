@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Card from "../components/Card";
 
 // Components
+import Header from "../components/Header";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
@@ -26,13 +27,6 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   background-color: #f1faee;
-`;
-
-const Header = styled.header`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
 `;
 
 const CardContainer = styled.section`
@@ -89,32 +83,49 @@ const levels = [
   {
     image: levelOne,
     title: "Level One",
-    targets: [waldo, odlaw, wizard],
+    targets: [
+      { name: "Waldo", image: waldo },
+      { name: "Odlaw", image: odlaw },
+      { name: "Wizard", image: wizard },
+    ],
   },
   {
     image: levelTwo,
     title: "Level Two",
-    targets: [waldo],
+    targets: [{ name: "Waldo", image: waldo }],
   },
   {
     image: levelThree,
     title: "Level Three",
-    targets: [waldo, odlaw, wenda, wizard],
+    targets: [
+      { name: "Waldo", image: waldo },
+      { name: "Odlaw", image: odlaw },
+      { name: "Wenda", image: wenda },
+      { name: "Wizard", image: wizard },
+    ],
   },
   {
     image: levelFour,
     title: "Level Four",
-    targets: [waldo, odlaw],
+    targets: [
+      { name: "Waldo", image: waldo },
+      { name: "Odlaw", image: odlaw },
+    ],
   },
   {
     image: levelFive,
     title: "Level Five",
-    targets: [waldo, odlaw, wenda, wizard],
+    targets: [
+      { name: "Waldo", image: waldo },
+      { name: "Odlaw", image: odlaw },
+      { name: "Wenda", image: wenda },
+      { name: "Wizard", image: wizard },
+    ],
   },
   {
     image: levelSix,
     title: "Level Six",
-    targets: [waldo],
+    targets: [{ name: "Waldo", image: waldo }],
   },
 ];
 

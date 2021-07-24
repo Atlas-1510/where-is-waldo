@@ -23,8 +23,9 @@ const Title = styled.div`
   font-size: 3rem;
   margin: 1rem;
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     font-size: 1.5rem;
+    width: 100px;
   }
 `;
 

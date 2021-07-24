@@ -1,6 +1,7 @@
 // Libraries
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -55,21 +56,33 @@ const TargetImage = styled.img`
   margin-left: 0.5rem;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+
 function Card({ level }) {
   return (
-    <Container>
-      <ImageContainer>
-        <Image src={level.image} />
-      </ImageContainer>
-      <LevelInfo>
-        <LevelTitle>{level.title}</LevelTitle>
-        <TargetContainer>
-          {level.targets.map((target) => (
-            <TargetImage key={target} src={target} />
-          ))}
-        </TargetContainer>
-      </LevelInfo>
-    </Container>
+    <StyledLink
+      to={{
+        pathname: "/game",
+        state: { level },
+      }}
+    >
+      <Container>
+        <ImageContainer>
+          <Image src={level.image} />
+        </ImageContainer>
+        <LevelInfo>
+          <LevelTitle>{level.title}</LevelTitle>
+          <TargetContainer>
+            {level.targets.map((target) => (
+              <TargetImage key={target.name} src={target.image} />
+            ))}
+          </TargetContainer>
+        </LevelInfo>
+      </Container>
+    </StyledLink>
   );
 }
 

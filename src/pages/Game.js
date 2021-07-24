@@ -1,82 +1,68 @@
-// // Libraries
-// import React, { useState, useEffect } from "react";
-// import styled from "styled-components";
+// Libraries
+import React from "react";
+import styled from "styled-components";
 
-// // Components
-// import GameHeader from "../components/GameHeader";
-// import Image from "../components/Image";
-// import VictoryModal from "../components/VictoryModal";
-// import HighScoresModal from "../components/HighScoresModal";
-// import DimBackGround from "../components/DimBackGround";
+// Components
+import Header from "../components/Header";
+import Logo from "../components/Logo";
+import Button from "../components/Button";
+import Footer from "../components/Footer";
+import Target from "../components/Target";
 
-// // Hooks
-// import useStartTimer from "../hooks/useStartTimer";
+const Container = styled.main`
+  display: flex;
+  flex-direction: column;
+  background-color: #f1faee;
+  min-height: 100%;
+`;
 
-// const Container = styled.main`
-//   display: flex;
-//   flex-direction: column;
-// `;
+const StyledHeader = styled(Header)`
+  flex-direction: row;
+  align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+`;
 
-// function GamePage({ location }) {
-//   const [targets, setTargets] = useState([]);
-//   const [victory, setVictory] = useState(false);
-//   const [victoryModalOpen, setVictoryModalOpen] = useState(false);
-//   const [scoresOpen, setScoresOpen] = useState(false);
-//   const timerID = useStartTimer(location);
-//   const imageURL = location.state.map.storageURL;
+const TargetsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  margin-right: 1rem;
+`;
 
-//   useEffect(() => {
-//     const initTargets = location.state.map.targets;
-//     const newTargets = initTargets.map((target) => {
-//       return { ...target, found: false };
-//     });
-//     setTargets(newTargets);
-//   }, [location]);
+const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem;
+  flex-grow: 1;
+`;
 
-//   useEffect(() => {
-//     if (targets.length !== 0) {
-//       if (targets.every((target) => target.found)) {
-//         console.log("victory!");
-//         setVictory(true);
-//       }
-//     }
-//   }, [targets]);
+const Image = styled.img`
+  width: 100%;
+`;
 
-//   useEffect(() => {
-//     if (victory) {
-//       setVictoryModalOpen(true);
-//     }
-//   }, [victory]);
+function Game({ location }) {
+  const level = location.state.level;
+  console.log(level);
+  return (
+    <Container>
+      <StyledHeader>
+        <Logo />
+        <TargetsContainer>
+          {level.targets &&
+            level.targets.map((target) => {
+              return <Target target={target} key={target.name} />;
+            })}
+        </TargetsContainer>
+      </StyledHeader>
+      <ImageContainer>
+        <Image src={level.image} />
+      </ImageContainer>
+      <Footer />
+    </Container>
+  );
+}
 
-//   useEffect(() => {
-//     if (scoresOpen) {
-//       setVictoryModalOpen(false);
-//     }
-//   }, [scoresOpen]);
-
-//   return (
-//     <Container>
-//       {timerID && (
-//         <GameHeader targets={targets} timerID={timerID} victory={victory} />
-//       )}
-//       <Image imageURL={imageURL} targets={targets} setTargets={setTargets} />
-//       {victory && (
-//         <>
-//           <DimBackGround>
-//             {victoryModalOpen && (
-//               <VictoryModal
-//                 timerID={timerID}
-//                 setScoresOpen={setScoresOpen}
-//                 setVictoryModalOpen={setVictoryModalOpen}
-//                 mapID={location.state.map.id}
-//               />
-//             )}
-//             {scoresOpen && <HighScoresModal mapID={location.state.map.id} />}
-//           </DimBackGround>
-//         </>
-//       )}
-//     </Container>
-//   );
-// }
-
-// export default GamePage;
+export default Game;
