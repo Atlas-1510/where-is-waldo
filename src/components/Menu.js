@@ -22,12 +22,6 @@ const UL = styled.ul`
   margin: 0;
 `;
 
-const MenuOption = styled.li`
-  font-size: 2rem;
-  list-style-type: none;
-  padding: 0.5rem;
-`;
-
 function Menu({ targets, location, containerRef }) {
   const [coords, setCoords] = useState({
     x: null,

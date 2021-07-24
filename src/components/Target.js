@@ -6,7 +6,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+
+  &&:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
   @media (max-width: 600px) {
     margin: 0.2rem;
   }
