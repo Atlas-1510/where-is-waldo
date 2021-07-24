@@ -9,6 +9,7 @@ const Container = styled.div`
   padding: 0.5rem;
   cursor: pointer;
   transition: background-color 0.5s ease;
+  opacity: ${(props) => (props.found ? 0.5 : 1)};
 
   &&:hover {
     background-color: rgba(255, 255, 255, 0.25);
@@ -37,9 +38,10 @@ const Title = styled.h4`
 `;
 
 function Target({ target, onClick }) {
+  console.log(target);
   const { name, image } = target;
   return (
-    <Container onClick={onClick}>
+    <Container onClick={onClick} found={target.found}>
       <Image src={image} />
       <Title>{name}</Title>
     </Container>

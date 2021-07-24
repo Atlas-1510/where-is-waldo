@@ -36,7 +36,7 @@ function Menu({ targets, setTargets, location, containerRef }) {
     ) {
       console.log(`You found ${menuChoice.name}!`);
       const newTargets = targets.map((target) =>
-        target.title === menuChoice.title ? { ...target, found: true } : target
+        target.name === menuChoice.name ? { ...target, found: true } : target
       );
       setTargets(newTargets);
     }
