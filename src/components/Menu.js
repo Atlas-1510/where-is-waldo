@@ -22,11 +22,25 @@ const UL = styled.ul`
   margin: 0;
 `;
 
-function Menu({ targets, location, containerRef }) {
+function Menu({ targets, setTargets, location, containerRef }) {
   const [coords, setCoords] = useState({
     x: null,
     y: null,
   });
+
+  const handleClick = (menuChoice) => {
+    console.log(menuChoice);
+    if (
+      Math.abs(location.relativeX - menuChoice.relativeX) < 0.1 &&
+      Math.abs(location.relativeY - menuChoice.relativeY) < 0.1
+    ) {
+      console.log(`You found ${menuChoice.name}!`);
+      const newTargets = targets.map((target) =>
+        target.title === menuChoice.title ? { ...target, found: true } : target
+      );
+      setTargets(newTargets);
+    }
+  };
 
   useEffect(() => {
     const update = () => {
@@ -62,7 +76,11 @@ function Menu({ targets, location, containerRef }) {
     <Container coords={coords}>
       <UL>
         {targets.map((target) => (
-          <Target key={target.name} target={target} />
+          <Target
+            key={target.name}
+            target={target}
+            onClick={() => handleClick(target)}
+          />
         ))}
       </UL>
     </Container>

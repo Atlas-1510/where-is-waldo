@@ -83,6 +83,7 @@ function Card({ levelInfo }) {
     const promises = targets.map(async (target) => {
       return {
         ...target,
+        found: false,
         image: await getImageFromFirestore(target.image),
       };
     });

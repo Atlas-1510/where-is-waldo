@@ -55,6 +55,7 @@ function Game({ location }) {
     relativeX: null,
     relativeY: null,
   });
+  const [targets, setTargets] = useState(location.state.level.targets);
   const level = location.state.level;
   const imageRef = useRef();
   const handleClick = (e) => {
@@ -106,8 +107,8 @@ function Game({ location }) {
       <StyledHeader>
         <Logo />
         <TargetsContainer>
-          {level.targets &&
-            level.targets.map((target) => {
+          {targets &&
+            targets.map((target) => {
               return <Target target={target} key={target.name} />;
             })}
         </TargetsContainer>
@@ -118,7 +119,8 @@ function Game({ location }) {
         )}
         {menu.open && (
           <Menu
-            targets={level.targets}
+            targets={targets}
+            setTargets={setTargets}
             location={menu}
             containerRef={imageRef}
           />

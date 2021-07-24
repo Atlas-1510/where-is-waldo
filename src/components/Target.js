@@ -36,10 +36,10 @@ const Title = styled.h4`
   }
 `;
 
-function Target({ target }) {
+function Target({ target, onClick }) {
   const { name, image } = target;
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Image src={image} />
       <Title>{name}</Title>
     </Container>
