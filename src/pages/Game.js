@@ -10,6 +10,10 @@ import Target from "../components/Target";
 import TargetBox from "../components/TargetBox";
 import Menu from "../components/Menu";
 import VictoryModal from "../components/VictoryModal";
+import Timer from "../components/Timer";
+
+// Hooks
+import useStartTimer from "../hooks/useStartTimer";
 
 const Container = styled.main`
   display: flex;
@@ -24,6 +28,11 @@ const StyledHeader = styled(Header)`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+`;
+
+const ContainerForTargetsAndTimer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const TargetsContainer = styled.div`
@@ -111,16 +120,20 @@ function Game({ location }) {
       });
     }
   };
+  const timerID = useStartTimer(location);
   return (
     <Container>
       <StyledHeader>
         <Logo />
-        <TargetsContainer>
-          {targets &&
-            targets.map((target) => {
-              return <Target target={target} key={target.name} />;
-            })}
-        </TargetsContainer>
+        <ContainerForTargetsAndTimer>
+          <TargetsContainer>
+            {targets &&
+              targets.map((target) => {
+                return <Target target={target} key={target.name} />;
+              })}
+          </TargetsContainer>
+          {timerID && <Timer timerID={timerID} victory={victory} />}
+        </ContainerForTargetsAndTimer>
       </StyledHeader>
       <ImageContainer>
         {targetBox.open && (
@@ -146,7 +159,7 @@ function Game({ location }) {
         )}
         <Image ref={imageRef} src={level.image} onClick={handleClick} />
       </ImageContainer>
-      {victory && <VictoryModal />}
+      {victory && <VictoryModal timerID={timerID} />}
       <Footer />
     </Container>
   );

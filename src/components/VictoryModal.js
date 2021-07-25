@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import Modal from "./Modal";
 import Button from "./Button";
 
+// Hooks
+import useEndTimer from "../hooks/useEndTimer";
+
 const Container = styled.div`
   position: absolute;
   display: flex;
@@ -19,11 +22,13 @@ const Container = styled.div`
   text-align: center;
 `;
 
-function VictoryModal() {
+function VictoryModal({ timerID }) {
+  const time = useEndTimer(timerID);
+
   return (
     <Container>
       <Modal>
-        <h1>Time: </h1>
+        <h1>Time: {time}</h1>
         <form>
           <label htmlFor="highscore-name">
             Enter your name to save your score!
