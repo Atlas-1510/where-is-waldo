@@ -1,5 +1,5 @@
 // Libraries
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 
 // Firebase
@@ -31,6 +31,9 @@ const Time = styled.span`
 
 function Timer({ timerID, victory }) {
   const [elapsedTime, setElapsedTime] = useState("00:00:00");
+  const cleanup = useCallback(() => {
+    firestore.collection("timers").doc(timerID).delete();
+  }, [timerID]);
 
   useEffect(() => {
     let startTime;
@@ -49,20 +52,17 @@ function Timer({ timerID, victory }) {
     }, 1000);
     return () => {
       clearInterval(timer);
+      cleanup(timerID);
     };
-  }, [timerID]);
+  }, [timerID, cleanup]);
 
   useEffect(() => {
-    const cleanup = () => {
-      firestore.collection("timers").doc(timerID).delete();
-    };
-
     window.addEventListener("beforeunload", cleanup);
 
     return () => {
       window.removeEventListener("beforeunload", cleanup);
     };
-  }, [timerID]);
+  }, [timerID, cleanup]);
 
   if (victory) {
     return <></>;
