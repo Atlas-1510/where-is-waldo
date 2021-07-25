@@ -29,13 +29,15 @@ function VictoryModal() {
             Enter your name to save your score!
           </label>
           <input type="text" id="highscore-name" placeholder="Name"></input>
-          <Button title={"Submit"} type="submit" />
+          <Button primary title={"Submit"} type="submit">
+            Submit
+          </Button>
         </form>
         <div>
           <Link exact to="/">
-            <Button title={"Play Again"} />
+            <Button title={"Play Again"}>Play Again</Button>
           </Link>
-          <Button title={"View high scores"} />
+          <Button title={"View high scores"}>High Scores</Button>
         </div>
       </Modal>
     </Container>
