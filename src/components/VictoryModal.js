@@ -16,12 +16,15 @@ const Input = styled.input`
   font-size: 1rem;
   border-radius: 15px;
   border: 1px solid lightgrey;
+<<<<<<< HEAD
   margin: 1rem;
 `;
 
 const Time = styled.span`
   font-size: 2rem;
   margin: 1rem;
+=======
+>>>>>>> origin/main
 `;
 
 function VictoryModal({ timerID }) {
@@ -29,7 +32,11 @@ function VictoryModal({ timerID }) {
 
   return (
     <Modal>
+<<<<<<< HEAD
       <Time>Time: {time}</Time>
+=======
+      <h1>Time: {time}</h1>
+>>>>>>> origin/main
       <form>
         <div>Enter your name to save your score!</div>
         <label htmlFor="highscore-name"></label>
