@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import Target from "../components/Target";
 import TargetBox from "../components/TargetBox";
 import Menu from "../components/Menu";
+import VictoryModal from "../components/VictoryModal";
 
 const Container = styled.main`
   display: flex;
@@ -56,6 +57,14 @@ function Game({ location }) {
     relativeY: null,
   });
   const [targets, setTargets] = useState(location.state.level.targets);
+  const [victory, setVictory] = useState(false);
+
+  useEffect(() => {
+    if (targets.every((target) => target.found)) {
+      setVictory(true);
+    }
+  }, [targets]);
+
   const level = location.state.level;
   const imageRef = useRef();
   const handleClick = (e) => {
@@ -123,10 +132,21 @@ function Game({ location }) {
             setTargets={setTargets}
             location={menu}
             containerRef={imageRef}
+            setTargetBox={setTargetBox}
+            setMenu={setMenu}
+            targetBox={targetBox}
           />
+        )}
+        {targets.map((target) =>
+          target.found ? (
+            <TargetBox location={target} containerRef={imageRef} />
+          ) : (
+            <></>
+          )
         )}
         <Image ref={imageRef} src={level.image} onClick={handleClick} />
       </ImageContainer>
+      {victory && <VictoryModal />}
       <Footer />
     </Container>
   );

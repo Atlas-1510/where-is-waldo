@@ -13,3 +13,7 @@ const DimBackGround = styled.div`
 `;
 
 export default DimBackGround;
+
+// Note for when I start tomorrow:
+// Currently trying to figure out how to place VictoryModal in center of screen when victory is detected
+// After that, begin work on timer.

@@ -22,7 +22,14 @@ const UL = styled.ul`
   margin: 0;
 `;
 
-function Menu({ targets, setTargets, location, containerRef }) {
+function Menu({
+  targets,
+  setTargets,
+  location,
+  containerRef,
+  setTargetBox,
+  setMenu,
+}) {
   const [coords, setCoords] = useState({
     x: null,
     y: null,
@@ -39,6 +46,16 @@ function Menu({ targets, setTargets, location, containerRef }) {
         target.name === menuChoice.name ? { ...target, found: true } : target
       );
       setTargets(newTargets);
+      setTargetBox({
+        open: false,
+        relativeX: null,
+        relativeY: null,
+      });
+      setMenu({
+        open: false,
+        relativeX: null,
+        relativeY: null,
+      });
     }
   };
 

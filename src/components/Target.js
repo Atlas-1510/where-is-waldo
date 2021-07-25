@@ -38,7 +38,6 @@ const Title = styled.h4`
 `;
 
 function Target({ target, onClick }) {
-  console.log(target);
   const { name, image } = target;
   return (
     <Container onClick={onClick} found={target.found}>
