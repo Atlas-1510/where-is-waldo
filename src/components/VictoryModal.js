@@ -10,42 +10,35 @@ import Button from "./Button";
 // Hooks
 import useEndTimer from "../hooks/useEndTimer";
 
-const Container = styled.div`
-  position: absolute;
-  display: flex;
-  min-height: 100%;
-  min-width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  ${"" /* background-color: rgba(0, 0, 0, 0.5); */}
-  text-align: center;
+const Input = styled.input`
+  padding: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  border-radius: 15px;
+  border: 1px solid lightgrey;
 `;
 
 function VictoryModal({ timerID }) {
   const time = useEndTimer(timerID);
 
   return (
-    <Container>
-      <Modal>
-        <h1>Time: {time}</h1>
-        <form>
-          <label htmlFor="highscore-name">
-            Enter your name to save your score!
-          </label>
-          <input type="text" id="highscore-name" placeholder="Name"></input>
-          <Button primary title={"Submit"} type="submit">
-            Submit
-          </Button>
-        </form>
-        <div>
-          <Link exact to="/">
-            <Button title={"Play Again"}>Play Again</Button>
-          </Link>
-          <Button title={"View high scores"}>High Scores</Button>
-        </div>
-      </Modal>
-    </Container>
+    <Modal>
+      <h1>Time: {time}</h1>
+      <form>
+        <div>Enter your name to save your score!</div>
+        <label htmlFor="highscore-name"></label>
+        <Input type="text" id="highscore-name" placeholder="Name"></Input>
+        <Button primary title={"Submit"} type="submit">
+          Submit
+        </Button>
+      </form>
+      <div>
+        <Link exact="true" to="/">
+          <Button title={"Play Again"}>Play Again</Button>
+        </Link>
+        <Button title={"View high scores"}>High Scores</Button>
+      </div>
+    </Modal>
   );
 }
 
