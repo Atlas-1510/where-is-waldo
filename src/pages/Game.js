@@ -30,11 +30,6 @@ const StyledHeader = styled(Header)`
   top: 0;
 `;
 
-const ContainerForTargetsAndTimer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 const TargetsContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -125,15 +120,12 @@ function Game({ location }) {
     <Container>
       <StyledHeader>
         <Logo />
-        <ContainerForTargetsAndTimer>
-          <TargetsContainer>
-            {targets &&
-              targets.map((target) => {
-                return <Target target={target} key={target.name} />;
-              })}
-          </TargetsContainer>
-          {timerID && <Timer timerID={timerID} victory={victory} />}
-        </ContainerForTargetsAndTimer>
+        <TargetsContainer>
+          {targets &&
+            targets.map((target) => {
+              return <Target target={target} key={target.name} />;
+            })}
+        </TargetsContainer>
       </StyledHeader>
       <ImageContainer>
         {targetBox.open && (
@@ -159,6 +151,7 @@ function Game({ location }) {
         )}
         <Image ref={imageRef} src={level.image} onClick={handleClick} />
       </ImageContainer>
+      {timerID && <Timer timerID={timerID} victory={victory} />}
       {victory && <VictoryModal timerID={timerID} />}
       <Footer />
     </Container>

@@ -8,6 +8,25 @@ import { firestore } from "../firebase/firebase";
 const Container = styled.div`
   align-self: center;
   margin: 1rem;
+  position: fixed;
+  right: 10px;
+  top: 100px;
+  font-size: 2rem;
+  font-family: "Roboto", sans-serif;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
+`;
+
+const Time = styled.span`
+  margin: 1rem;
 `;
 
 function Timer({ timerID, victory }) {
@@ -46,15 +65,11 @@ function Timer({ timerID, victory }) {
   }, [timerID]);
 
   if (victory) {
-    return (
-      <Container>
-        <h1>You win!</h1>
-      </Container>
-    );
+    return <></>;
   }
   return (
     <Container>
-      <h1>{elapsedTime}</h1>
+      <Time>{elapsedTime}</Time>
     </Container>
   );
 }
