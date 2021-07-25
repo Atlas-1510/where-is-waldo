@@ -43,6 +43,7 @@ const ImageContainer = styled.div`
   justify-content: center;
   margin: 1rem;
   flex-grow: 1;
+  pointer-events: ${(props) => (props.victory ? "none" : "auto")};
 `;
 
 const Image = styled.img`
@@ -127,7 +128,7 @@ function Game({ location }) {
             })}
         </TargetsContainer>
       </StyledHeader>
-      <ImageContainer>
+      <ImageContainer victory={victory}>
         {targetBox.open && (
           <TargetBox location={targetBox} containerRef={imageRef} />
         )}
@@ -144,7 +145,11 @@ function Game({ location }) {
         )}
         {targets.map((target) =>
           target.found ? (
-            <TargetBox location={target} containerRef={imageRef} />
+            <TargetBox
+              key={target.name}
+              location={target}
+              containerRef={imageRef}
+            />
           ) : (
             <></>
           )

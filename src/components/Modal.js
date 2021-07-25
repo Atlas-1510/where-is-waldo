@@ -3,6 +3,12 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  font-family: "Roboto", sans-serif;
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
