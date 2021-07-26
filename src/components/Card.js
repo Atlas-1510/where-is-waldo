@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-// Hooks
-import { storage } from "../firebase/firebase";
+// utils
+import getImageFromFirestore from "../utils/getImageFromFirestore";
 
 const Container = styled.div`
   display: flex;
@@ -67,19 +67,7 @@ const StyledLink = styled(Link)`
 function Card({ levelInfo }) {
   const [level, setLevel] = useState(null);
 
-  // These functions unpack the info from firestore and convert into usable assets
-  async function getImageFromFirestore(url) {
-    const ref = storage.refFromURL(url);
-    const mapImage = await ref
-      .getDownloadURL()
-      .then((response) => {
-        return response;
-      })
-      .catch((err) => console.log(err));
-
-    return mapImage;
-  }
-  const getTargetImages = (targets) => {
+  function getMultiImagesFromFirestore(targets) {
     const promises = targets.map(async (target) => {
       return {
         ...target,
@@ -88,12 +76,12 @@ function Card({ levelInfo }) {
       };
     });
     return Promise.all(promises);
-  };
+  }
 
   useEffect(() => {
     (async function getLevelImages() {
       const map = await getImageFromFirestore(levelInfo.image);
-      const targets = await getTargetImages(levelInfo.targets);
+      const targets = await getMultiImagesFromFirestore(levelInfo.targets);
 
       setLevel({
         ...levelInfo,

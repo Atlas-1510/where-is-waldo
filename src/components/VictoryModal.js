@@ -10,6 +10,9 @@ import Button from "./Button";
 // Hooks
 import useEndTimer from "../hooks/useEndTimer";
 
+// Firebase
+import { firestore } from "../firebase/firebase";
+
 const Input = styled.input`
   padding: 0.5rem;
   border: none;
@@ -24,14 +27,27 @@ const Time = styled.span`
   margin: 1rem;
 `;
 
-function VictoryModal({ timerID }) {
+function VictoryModal({ timerID, levelID }) {
   const time = useEndTimer(timerID);
+
+  const handleScoreSubmit = (e) => {
+    e.preventDefault();
+    const title =
+      e.target[0].value.length === 0 ? "Anonymous" : e.target[0].value;
+    const newScore = {
+      title,
+      time: time,
+    };
+
+    firestore.collection(`levels/${levelID}/scores`).add(newScore);
+    console.log("score submitted");
+  };
 
   return (
     <Modal>
       <Time>Time: {time}</Time>
       <h1>Time: {time}</h1>
-      <form>
+      <form onSubmit={handleScoreSubmit}>
         <div>Enter your name to save your score!</div>
         <label htmlFor="highscore-name"></label>
         <Input type="text" id="highscore-name" placeholder="Name"></Input>

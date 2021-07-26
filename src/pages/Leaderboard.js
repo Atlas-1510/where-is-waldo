@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // Components
@@ -11,104 +11,8 @@ import Footer from "../components/Footer";
 // Hooks
 import useFirestore from "../hooks/useFirestore";
 
-// TODO: Remove test scores data
-const testScores = [
-  {
-    rank: 1,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 2,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 3,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 4,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 5,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 6,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 7,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 4,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 5,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 6,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 7,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 4,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 5,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 6,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 7,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 4,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 5,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 6,
-    title: "Test User Name",
-    time: "01:14",
-  },
-  {
-    rank: 7,
-    title: "Test User Name",
-    time: "01:14",
-  },
-];
+// Utils
+import getMultiDocsFromFirestore from "../utils/getMultiDocsFromFirestore";
 
 const Container = styled.main`
   display: flex;
@@ -197,8 +101,23 @@ const TD = styled.td`
   letter-spacing: 1px;
 `;
 
-function Leaderboard() {
-  const { docs: levels } = useFirestore("levels", "level");
+function Leaderboard({ location }) {
+  const { docs: levels } = useFirestore("levels", "level"); // To get level tiles
+  const [level, setLevel] = useState(
+    location.state ? location.state.level : "mwl9apO1n2SFegOq2DlE"
+  ); // id for level one as a default
+  const [scores, setScores] = useState(null);
+
+  useEffect(() => {
+    // Make a call to firestore to get scores for the level
+    (async () => {
+      const foundScores = await getMultiDocsFromFirestore(
+        `levels/${level}/scores`
+      );
+      console.log(foundScores);
+      setScores(foundScores);
+    })();
+  }, [level]);
 
   return (
     <Container>
@@ -220,12 +139,13 @@ function Leaderboard() {
             </tr>
           </TableHead>
           <tbody>
-            {testScores.map((score) => (
-              <TR>
-                <TD>{score.title}</TD>
-                <TD>{score.time}</TD>
-              </TR>
-            ))}
+            {scores &&
+              scores.map((score) => (
+                <TR>
+                  <TD>{score.title}</TD>
+                  <TD>{score.time}</TD>
+                </TR>
+              ))}
           </tbody>
         </Table>
       </TableContainer>

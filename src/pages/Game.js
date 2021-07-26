@@ -157,7 +157,7 @@ function Game({ location }) {
         <Image ref={imageRef} src={level.image} onClick={handleClick} />
       </ImageContainer>
       {timerID && <Timer timerID={timerID} victory={victory} />}
-      {victory && <VictoryModal timerID={timerID} />}
+      {victory && <VictoryModal timerID={timerID} levelID={level.id} />}
       <Footer />
     </Container>
   );
