@@ -30,6 +30,7 @@ function VictoryModal({ timerID }) {
   return (
     <Modal>
       <Time>Time: {time}</Time>
+      <h1>Time: {time}</h1>
       <form>
         <div>Enter your name to save your score!</div>
         <label htmlFor="highscore-name"></label>
