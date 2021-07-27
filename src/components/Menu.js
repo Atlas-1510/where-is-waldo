@@ -64,18 +64,28 @@ function Menu({
       let x =
         location.relativeX * containerRef.current.offsetWidth +
         containerRef.current.offsetLeft;
-      const y =
+      let y =
         location.relativeY * containerRef.current.offsetHeight +
         containerRef.current.offsetTop;
 
-      const image80Line =
+      const imageX80Line =
         containerRef.current.offsetLeft +
         containerRef.current.offsetWidth * 0.8;
 
-      if (x < image80Line) {
+      if (x < imageX80Line) {
         x = x + containerRef.current.offsetWidth * 0.03;
       } else {
         x = x - containerRef.current.offsetWidth * 0.08;
+      }
+
+      const imageY80Line =
+        containerRef.current.offsetTop +
+        containerRef.current.offsetHeight * 0.8;
+
+      if (y < imageY80Line) {
+        y = y + containerRef.current.offsetHeight * 0.03;
+      } else {
+        y = y - containerRef.current.offsetHeight * 0.3;
       }
       setCoords({
         x,
