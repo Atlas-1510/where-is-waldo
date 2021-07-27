@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -31,6 +31,7 @@ const Time = styled.span`
 `;
 
 function VictoryModal({ timerID, levelID }) {
+  const [scoreSubmitted, setScoreSubmitted] = useState(false);
   const time = useEndTimer(timerID);
 
   const handleScoreSubmit = (e) => {
@@ -46,21 +47,23 @@ function VictoryModal({ timerID, levelID }) {
     };
 
     firestore.collection(`levels/${levelID}/scores`).add(newScore);
-    console.log("score submitted");
+    setScoreSubmitted(true);
   };
 
   return (
     <Modal>
       <Time>Time: {time}</Time>
-      <h1>Time: {time}</h1>
-      <form onSubmit={handleScoreSubmit}>
-        <div>Enter your name to save your score!</div>
-        <label htmlFor="highscore-name"></label>
-        <Input type="text" id="highscore-name" placeholder="Name"></Input>
-        <Button primary title={"Submit"} type="submit">
-          Submit
-        </Button>
-      </form>
+      {!scoreSubmitted && (
+        <form onSubmit={handleScoreSubmit}>
+          <div>Enter your name to save your score!</div>
+          <label htmlFor="highscore-name"></label>
+          <Input type="text" id="highscore-name" placeholder="Name"></Input>
+          <Button primary title={"Submit"} type="submit">
+            Submit
+          </Button>
+        </form>
+      )}
+      {scoreSubmitted && <h2>Score submitted!</h2>}
       <div>
         <Link exact="true" to="/">
           <Button title={"Play Again"}>Play Again</Button>
