@@ -2,9 +2,9 @@
 
 This is an implementation of the classic 'Where's Waldo' game, where targets that are hidden within an image need to be found.
 
-The front end of this application is based on React. The back-end use Firebase to store map and target images, validate when targets are found, and store user high scores.
+The front end of this application is based on React. The back-end uses Firebase to store map and target images, validate when targets are found, and store user high scores. The application is hosted on Firebase.
 
-[View the project here](Add link)
+[View the project here](https://my-attempt-b7181.web.app)
 
 ## This project was built using the following packages:
 
