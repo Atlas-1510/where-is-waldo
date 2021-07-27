@@ -37,12 +37,10 @@ function Menu({
   });
 
   const handleClick = (menuChoice) => {
-    console.log(menuChoice);
     if (
       Math.abs(location.relativeX - menuChoice.relativeX) < 0.05 &&
       Math.abs(location.relativeY - menuChoice.relativeY) < 0.05
     ) {
-      console.log(`You found ${menuChoice.name}!`);
       const newTargets = targets.map((target) =>
         target.name === menuChoice.name ? { ...target, found: true } : target
       );
@@ -79,14 +77,12 @@ function Menu({
         x = x - containerRef.current.offsetWidth * 0.08;
       }
 
-      const imageY80Line =
+      const imageY90Line =
         containerRef.current.offsetTop +
-        containerRef.current.offsetHeight * 0.8;
+        containerRef.current.offsetHeight * 0.9;
 
-      if (y < imageY80Line) {
-        y = y + containerRef.current.offsetHeight * 0.03;
-      } else {
-        y = y - containerRef.current.offsetHeight * 0.3;
+      if (y > imageY90Line) {
+        y = y - 250;
       }
       setCoords({
         x,

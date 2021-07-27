@@ -90,9 +90,6 @@ function Game({ location }) {
       const relativeX = clickOffsetFromCornerX / imageWidth;
       const relativeY = clickOffsetFromCornerY / imageHeight;
 
-      console.log(`relativeX: ${relativeX}`);
-      console.log(`relativeY: ${relativeY}`);
-
       setTargetBox({
         open: true,
         relativeX,
@@ -144,17 +141,15 @@ function Game({ location }) {
             targetBox={targetBox}
           />
         )}
-        {targets.map((target) =>
-          target.found ? (
+        {targets
+          .filter((target) => target.found)
+          .map((target) => (
             <TargetBox
               key={target.name}
               location={target}
               containerRef={imageRef}
             />
-          ) : (
-            <></>
-          )
-        )}
+          ))}
         <Image ref={imageRef} src={level.image} onClick={handleClick} />
       </ImageContainer>
       {timerID && <Timer timerID={timerID} victory={victory} />}

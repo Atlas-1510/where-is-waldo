@@ -82,17 +82,22 @@ function Card({ levelInfo }) {
   }
 
   useEffect(() => {
+    let mounted = false;
     (async function getLevelImages() {
       const map = await getImageFromFirestore(levelInfo.image);
       const targets = await getMultiImagesFromFirestore(levelInfo.targets);
-
-      setLevel({
-        ...levelInfo,
-        image: map,
-        targets,
-      });
+      if (!mounted) {
+        setLevel({
+          ...levelInfo,
+          image: map,
+          targets,
+        });
+      }
+      return () => {
+        mounted = true;
+      };
     })();
-  }, []);
+  }, [levelInfo]);
 
   return (
     <>

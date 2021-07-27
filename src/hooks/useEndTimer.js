@@ -7,8 +7,8 @@ import { timeStamp, firestore } from "../firebase/firebase";
 export default function useEndTimer(timerID) {
   const [timeElapsed, setTimeElapsed] = useState(null);
 
-  const timerRef = firestore.collection("timers").doc(timerID);
   useEffect(() => {
+    const timerRef = firestore.collection("timers").doc(timerID);
     (async () => {
       await timerRef.set(
         {
@@ -32,7 +32,7 @@ export default function useEndTimer(timerID) {
     return () => {
       timerRef.delete();
     };
-  }, []);
+  }, [timerID]);
 
   return timeElapsed;
 }

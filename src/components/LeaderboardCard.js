@@ -76,7 +76,7 @@ function LeaderboardCard({ levelInfo, activeLevel, setLevel }) {
         image: map,
       });
     })();
-  }, []);
+  }, [levelInfo]);
 
   useEffect(() => {
     if (activeLevel === levelInfo.id) {

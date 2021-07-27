@@ -162,7 +162,7 @@ function Leaderboard({ location }) {
             <tbody>
               {scores &&
                 scores.map((score) => (
-                  <TR>
+                  <TR key={score.id}>
                     <TD>{score.title}</TD>
                     <TD>{score.time}</TD>
                   </TR>

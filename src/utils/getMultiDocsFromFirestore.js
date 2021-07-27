@@ -12,7 +12,7 @@ export default async function getMultiDocsFromFirestore(target, orderBy) {
     .get()
     .then((snap) => {
       snap.forEach((doc) => {
-        docs.push(doc.data());
+        docs.push({ ...doc.data(), id: doc.id });
       });
     })
     .catch((err) => console.log(err));
