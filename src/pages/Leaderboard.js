@@ -127,7 +127,8 @@ function Leaderboard({ location }) {
     // Make a call to firestore to get scores for the level
     (async () => {
       const foundScores = await getMultiDocsFromFirestore(
-        `levels/${activeLevel}/scores`
+        `levels/${activeLevel}/scores`,
+        "time"
       );
       setScores(foundScores);
     })();

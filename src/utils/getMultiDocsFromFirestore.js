@@ -1,9 +1,14 @@
 import { firestore } from "../firebase/firebase";
 
-export default async function getMultiDocsFromFirestore(target) {
+export default async function getMultiDocsFromFirestore(target, orderBy) {
+  let ref;
+  if (!orderBy) {
+    ref = firestore.collection(target);
+  } else {
+    ref = firestore.collection(target).orderBy(orderBy);
+  }
   const docs = [];
-  await firestore
-    .collection(target)
+  await ref
     .get()
     .then((snap) => {
       snap.forEach((doc) => {
