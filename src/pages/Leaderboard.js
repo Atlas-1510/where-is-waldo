@@ -13,6 +13,7 @@ import useFirestore from "../hooks/useFirestore";
 
 // Utils
 import getMultiDocsFromFirestore from "../utils/getMultiDocsFromFirestore";
+import { SiTomorrowland } from "react-icons/si";
 
 const Container = styled.main`
   display: flex;
@@ -101,10 +102,16 @@ const TD = styled.td`
   letter-spacing: 1px;
 `;
 
+// **********************************************
+// Note for starting tomorrow, just added ability to load level one scores as a default
+// Need to find a way to pass levelID when a tile is clicked on, or when coming from a game that just finished that level.
+// **********************************************
+
 function Leaderboard({ location }) {
+  console.log(location);
   const { docs: levels } = useFirestore("levels", "level"); // To get level tiles
   const [level, setLevel] = useState(
-    location.state ? location.state.level : "mwl9apO1n2SFegOq2DlE"
+    location.state ? location.state.levelID : "mwl9apO1n2SFegOq2DlE"
   ); // id for level one as a default
   const [scores, setScores] = useState(null);
 

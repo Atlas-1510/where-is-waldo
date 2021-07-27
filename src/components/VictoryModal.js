@@ -59,7 +59,17 @@ function VictoryModal({ timerID, levelID }) {
         <Link exact="true" to="/">
           <Button title={"Play Again"}>Play Again</Button>
         </Link>
-        <Button title={"View high scores"}>High Scores</Button>
+        <Link
+          exact="true"
+          to={{
+            pathname: "/leaderboard",
+            state: {
+              levelID,
+            },
+          }}
+        >
+          <Button title={"View high scores"}>High Scores</Button>
+        </Link>
       </div>
     </Modal>
   );
