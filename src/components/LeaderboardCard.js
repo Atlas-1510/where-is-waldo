@@ -8,7 +8,7 @@ import { storage } from "../firebase/firebase";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  ${"" /* margin: 1rem; */}
   border: ${(props) =>
     props.active ? "1px solid rgba(100, 100, 255, 0.1)" : "1px solid #d8f2cf"};
   overflow: hidden;
@@ -21,7 +21,7 @@ const Container = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  width: 188px;
+  min-width: 100%;
   height: 125px;
   overflow: hidden;
   display: flex;

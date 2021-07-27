@@ -13,7 +13,6 @@ import useFirestore from "../hooks/useFirestore";
 
 // Utils
 import getMultiDocsFromFirestore from "../utils/getMultiDocsFromFirestore";
-import { SiTomorrowland } from "react-icons/si";
 
 const Container = styled.main`
   display: flex;
@@ -21,6 +20,18 @@ const Container = styled.main`
   align-items: center;
   background-color: #f1faee;
   min-height: 100%;
+`;
+
+const Content = styled.div`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+
+  @media (max-width: 700px) {
+    width: 90%;
+  }
 `;
 
 const Title = styled.div`
@@ -36,9 +47,11 @@ const Title = styled.div`
 
 const CardContainer = styled.section`
   display: grid;
+  width: 100%;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 2rem 5rem 2rem 5rem;
+  grid-gap: 1.5rem;
+  margin: 2rem 0rem 2rem 0rem;
 
   @media (max-width: 900px) {
     margin: 1rem;
@@ -55,13 +68,14 @@ const CardContainer = styled.section`
 
 const TableContainer = styled.div`
   font-family: "Roboto", sans-serif;
-  width: 60%;
+  width: 100%;
   max-height: 50vh;
   overflow: scroll;
   border-radius: 15px;
   display: grid;
   place-items: center;
   position: relative;
+  margin-top: 1rem;
 
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -124,36 +138,38 @@ function Leaderboard({ location }) {
       <Header>
         <Logo />
       </Header>
-      <Title>Leaderboard</Title>
-      <CardContainer>
-        {levels.map((level) => (
-          <LeaderboardCard
-            key={level.title}
-            levelInfo={level}
-            activeLevel={activeLevel}
-            setLevel={setLevel}
-          />
-        ))}
-      </CardContainer>
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <tr>
-              <TH>Name</TH>
-              <TH>Time</TH>
-            </tr>
-          </TableHead>
-          <tbody>
-            {scores &&
-              scores.map((score) => (
-                <TR>
-                  <TD>{score.title}</TD>
-                  <TD>{score.time}</TD>
-                </TR>
-              ))}
-          </tbody>
-        </Table>
-      </TableContainer>
+      <Content>
+        <Title>Leaderboard</Title>
+        <CardContainer>
+          {levels.map((level) => (
+            <LeaderboardCard
+              key={level.title}
+              levelInfo={level}
+              activeLevel={activeLevel}
+              setLevel={setLevel}
+            />
+          ))}
+        </CardContainer>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <tr>
+                <TH>Name</TH>
+                <TH>Time</TH>
+              </tr>
+            </TableHead>
+            <tbody>
+              {scores &&
+                scores.map((score) => (
+                  <TR>
+                    <TD>{score.title}</TD>
+                    <TD>{score.time}</TD>
+                  </TR>
+                ))}
+            </tbody>
+          </Table>
+        </TableContainer>
+      </Content>
 
       <Footer />
     </Container>
