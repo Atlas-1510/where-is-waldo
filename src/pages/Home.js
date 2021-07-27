@@ -16,18 +16,33 @@ import useFirestore from "../hooks/useFirestore";
 const Container = styled.main`
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #f1faee;
 `;
 
-const CardContainer = styled.section`
+const ContentContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  align-self: center;
   align-items: center;
-  justify-content: center;
-  margin: 2rem 5rem 2rem 5rem;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 80%;
+`;
 
-  @media (max-width: 600px) {
+const CardContainer = styled.section`
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.5rem;
+  width: 100%;
+  margin: 2rem 0 2rem 0;
+
+  @media (max-width: 900px) {
     margin: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -39,9 +54,15 @@ const LeaderBoardBanner = styled.div`
   justify-content: space-between;
   margin: 2rem 10rem 2rem 10rem;
   border-radius: 15px;
+  width: 100%;
 
   @media (max-width: 600px) {
     margin: 1rem;
+  }
+
+  @media (max-width: 350px) {
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -80,20 +101,23 @@ function Home() {
       <Header>
         <Logo />
       </Header>
-      <CardContainer>
-        {levels.map((level) => (
-          <Card key={level.title} levelInfo={level} />
-        ))}
-      </CardContainer>
-      <LeaderBoardBanner>
-        <Title>
-          <Div color="#118ab2">Are you a Waldo expert?</Div>
-          <Div color="#e63946">See the leaderboard</Div>
-        </Title>
-        <StyledLink exact="true" to="/leaderboard">
-          <StyledButton primary>View Leaderboard</StyledButton>
-        </StyledLink>
-      </LeaderBoardBanner>
+      <ContentContainer>
+        <CardContainer>
+          {levels.map((level) => (
+            <Card key={level.title} levelInfo={level} />
+          ))}
+        </CardContainer>
+        <LeaderBoardBanner>
+          <Title>
+            <Div color="#118ab2">Are you a Waldo expert?</Div>
+            <Div color="#e63946">See the leaderboard</Div>
+          </Title>
+          <StyledLink exact="true" to="/leaderboard">
+            <StyledButton primary>View Leaderboard</StyledButton>
+          </StyledLink>
+        </LeaderBoardBanner>
+      </ContentContainer>
+
       <Footer />
     </Container>
   );

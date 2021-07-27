@@ -9,7 +9,6 @@ import getImageFromFirestore from "../utils/getImageFromFirestore";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem;
   border: 1px solid #d8f2cf;
   overflow: hidden;
   border-radius: 15px;
@@ -20,7 +19,6 @@ const Container = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  width: 375px;
   height: 250px;
   overflow: hidden;
   display: flex;
@@ -31,10 +29,15 @@ const ImageContainer = styled.div`
     width: 80vw;
     height: 200px;
   }
+
+  @media (max-width: 350px) {
+    width: 80vw;
+    height: 100px;
+  }
 `;
 
 const Image = styled.img`
-  min-width: 100%;
+  width: 100%;
   min-height: 100%;
 `;
 
