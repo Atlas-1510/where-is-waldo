@@ -102,13 +102,7 @@ const TD = styled.td`
   letter-spacing: 1px;
 `;
 
-// **********************************************
-// Note for starting tomorrow, just added ability to load level one scores as a default
-// Need to find a way to pass levelID when a tile is clicked on, or when coming from a game that just finished that level.
-// **********************************************
-
 function Leaderboard({ location }) {
-  console.log(location);
   const { docs: levels } = useFirestore("levels", "level"); // To get level tiles
   const [level, setLevel] = useState(
     location.state ? location.state.levelID : "mwl9apO1n2SFegOq2DlE"
@@ -134,7 +128,11 @@ function Leaderboard({ location }) {
       <Title>Leaderboard</Title>
       <CardContainer>
         {levels.map((level) => (
-          <LeaderboardCard key={level.title} levelInfo={level} />
+          <LeaderboardCard
+            key={level.title}
+            levelInfo={level}
+            setLevel={setLevel}
+          />
         ))}
       </CardContainer>
       <TableContainer>

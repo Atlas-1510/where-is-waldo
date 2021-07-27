@@ -49,8 +49,8 @@ const LevelTitle = styled.span`
   font-size: 1rem;
 `;
 
-function LeaderboardCard({ levelInfo }) {
-  const [level, setLevel] = useState(null);
+function LeaderboardCard({ levelInfo, setLevel }) {
+  const [levelView, setLevelView] = useState(null);
 
   async function getImageFromFirestore(url) {
     const ref = storage.refFromURL(url);
@@ -68,7 +68,7 @@ function LeaderboardCard({ levelInfo }) {
     (async function getLevelImages() {
       const map = await getImageFromFirestore(levelInfo.image);
 
-      setLevel({
+      setLevelView({
         ...levelInfo,
         image: map,
       });
@@ -77,13 +77,13 @@ function LeaderboardCard({ levelInfo }) {
 
   return (
     <>
-      {level && (
-        <Container>
+      {levelView && (
+        <Container onClick={() => setLevel(levelInfo.id)}>
           <ImageContainer>
-            <Image src={level.image} />
+            <Image src={levelView.image} />
           </ImageContainer>
           <LevelInfo>
-            <LevelTitle>{level.title}</LevelTitle>
+            <LevelTitle>{levelView.title}</LevelTitle>
           </LevelInfo>
         </Container>
       )}
