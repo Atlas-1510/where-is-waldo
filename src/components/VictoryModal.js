@@ -13,6 +13,9 @@ import useEndTimer from "../hooks/useEndTimer";
 // Firebase
 import { firestore } from "../firebase/firebase";
 
+import Filter from "bad-words";
+const filter = new Filter();
+
 const Input = styled.input`
   padding: 0.5rem;
   border: none;
@@ -32,8 +35,11 @@ function VictoryModal({ timerID, levelID }) {
 
   const handleScoreSubmit = (e) => {
     e.preventDefault();
-    const title =
+    let title =
       e.target[0].value.length === 0 ? "Anonymous" : e.target[0].value;
+    if (filter.isProfane(title)) {
+      title = "🤐";
+    }
     const newScore = {
       title,
       time: time,
