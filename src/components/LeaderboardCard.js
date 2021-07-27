@@ -9,13 +9,15 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem;
-  border: 1px solid #d8f2cf;
+  border: ${(props) =>
+    props.active ? "1px solid rgba(100, 100, 255, 0.1)" : "1px solid #d8f2cf"};
   overflow: hidden;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 16px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  background-color: ${(props) =>
+    props.active ? "rgba(100, 100, 255, 0.25)" : "rgba(255, 255, 255, 0.25)"};
 `;
 
 const ImageContainer = styled.div`
@@ -49,8 +51,9 @@ const LevelTitle = styled.span`
   font-size: 1rem;
 `;
 
-function LeaderboardCard({ levelInfo, setLevel }) {
+function LeaderboardCard({ levelInfo, activeLevel, setLevel }) {
   const [levelView, setLevelView] = useState(null);
+  const [active, setActive] = useState(false);
 
   async function getImageFromFirestore(url) {
     const ref = storage.refFromURL(url);
@@ -75,10 +78,18 @@ function LeaderboardCard({ levelInfo, setLevel }) {
     })();
   }, []);
 
+  useEffect(() => {
+    if (activeLevel === levelInfo.id) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  }, [activeLevel, levelInfo]);
+
   return (
     <>
       {levelView && (
-        <Container onClick={() => setLevel(levelInfo.id)}>
+        <Container onClick={() => setLevel(levelInfo.id)} active={active}>
           <ImageContainer>
             <Image src={levelView.image} />
           </ImageContainer>

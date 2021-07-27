@@ -104,7 +104,7 @@ const TD = styled.td`
 
 function Leaderboard({ location }) {
   const { docs: levels } = useFirestore("levels", "level"); // To get level tiles
-  const [level, setLevel] = useState(
+  const [activeLevel, setLevel] = useState(
     location.state ? location.state.levelID : "mwl9apO1n2SFegOq2DlE"
   ); // id for level one as a default
   const [scores, setScores] = useState(null);
@@ -113,12 +113,11 @@ function Leaderboard({ location }) {
     // Make a call to firestore to get scores for the level
     (async () => {
       const foundScores = await getMultiDocsFromFirestore(
-        `levels/${level}/scores`
+        `levels/${activeLevel}/scores`
       );
-      console.log(foundScores);
       setScores(foundScores);
     })();
-  }, [level]);
+  }, [activeLevel]);
 
   return (
     <Container>
@@ -131,6 +130,7 @@ function Leaderboard({ location }) {
           <LeaderboardCard
             key={level.title}
             levelInfo={level}
+            activeLevel={activeLevel}
             setLevel={setLevel}
           />
         ))}
