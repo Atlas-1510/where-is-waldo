@@ -38,8 +38,8 @@ function Menu({
   const handleClick = (menuChoice) => {
     console.log(menuChoice);
     if (
-      Math.abs(location.relativeX - menuChoice.relativeX) < 0.1 &&
-      Math.abs(location.relativeY - menuChoice.relativeY) < 0.1
+      Math.abs(location.relativeX - menuChoice.relativeX) < 0.05 &&
+      Math.abs(location.relativeY - menuChoice.relativeY) < 0.05
     ) {
       console.log(`You found ${menuChoice.name}!`);
       const newTargets = targets.map((target) =>
