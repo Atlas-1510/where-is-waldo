@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSpring, animated } from "react-spring";
 
 // utils
 import getImageFromFirestore from "../utils/getImageFromFirestore";
 
-const Container = styled.div`
+const Container = styled(animated.div)`
   display: flex;
   flex-direction: column;
   border: 1px solid #d8f2cf;
@@ -48,7 +49,7 @@ const LevelInfo = styled.div`
   margin: 1rem;
 `;
 
-const LevelTitle = styled.span`
+const LevelTitle = styled(animated.span)`
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
 `;
@@ -99,6 +100,19 @@ function Card({ levelInfo }) {
     })();
   }, [levelInfo]);
 
+  const [hover, setHover] = useState(false);
+
+  const spring = useSpring({
+    y: hover ? -10 : 0,
+    backgroundColor: hover
+      ? "rgba(100, 100, 255, 0.25)"
+      : "rgba(255, 255, 255, 0.25)",
+  });
+
+  const titleSpring = useSpring({
+    fontSize: hover ? "1.5rem" : "1rem",
+  });
+
   return (
     <>
       {level && (
@@ -109,12 +123,16 @@ function Card({ levelInfo }) {
           }}
           exact="true"
         >
-          <Container>
+          <Container
+            style={spring}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
             <ImageContainer>
               <Image src={level.image} />
             </ImageContainer>
             <LevelInfo>
-              <LevelTitle>{level.title}</LevelTitle>
+              <LevelTitle style={titleSpring}>{level.title}</LevelTitle>
               <TargetContainer>
                 {level.targets.map((target) => (
                   <TargetImage key={target.name} src={target.image} />
