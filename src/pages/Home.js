@@ -9,7 +9,6 @@ import Logo from "../components/Logo";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
-import CardContainer from "../components/CardContainer";
 
 // Hooks
 import useFirestore from "../hooks/useFirestore";
@@ -28,6 +27,23 @@ const ContentContainer = styled.div`
   flex-direction: column;
   flex-grow: 1;
   max-width: 80%;
+`;
+
+const CardContainer = styled.section`
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.5rem;
+  width: 100%;
+  margin: 2rem 0 2rem 0;
+
+  @media (max-width: 900px) {
+    margin: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const LeaderBoardBanner = styled.div`
@@ -86,7 +102,11 @@ function Home() {
         <Logo />
       </Header>
       <ContentContainer>
-        <CardContainer levels={levels}></CardContainer>
+        <CardContainer>
+          {levels.map((level) => (
+            <Card key={level.title} levelInfo={level} />
+          ))}
+        </CardContainer>
         <LeaderBoardBanner>
           <Title>
             <Div color="#118ab2">Are you a Waldo expert?</Div>
