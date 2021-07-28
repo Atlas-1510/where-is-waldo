@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { IconContext } from "react-icons";
 import { SiGithub } from "react-icons/si";
 import { Link } from "react-router-dom";
+import { useSpring, animated } from "@react-spring/core";
 
 const Container = styled.footer`
   display: flex;
