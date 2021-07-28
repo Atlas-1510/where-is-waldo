@@ -13,3 +13,4 @@ The front end of this application is based on React. The back-end uses Firebase 
 - [create-react-app](https://github.com/facebook/create-react-app)
 - [react-router](https://reactrouter.com)
 - [bad-words](https://www.npmjs.com/package/bad-words)
+- [react-spring](https://react-spring.io)
