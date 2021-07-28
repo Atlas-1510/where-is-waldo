@@ -95,7 +95,7 @@ function Game({ location }) {
         relativeX,
         relativeY,
       });
-      // TODO: Offset menu, adjust for page width so not offscreen
+
       setMenu({
         open: true,
         relativeX,

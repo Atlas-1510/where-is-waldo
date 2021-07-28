@@ -117,14 +117,13 @@ const TD = styled.td`
 `;
 
 function Leaderboard({ location }) {
-  const { docs: levels } = useFirestore("levels", "level"); // To get level tiles
+  const { docs: levels } = useFirestore("levels", "level");
   const [activeLevel, setLevel] = useState(
     location.state ? location.state.levelID : "mwl9apO1n2SFegOq2DlE"
-  ); // id for level one as a default
+  );
   const [scores, setScores] = useState(null);
 
   useEffect(() => {
-    // Make a call to firestore to get scores for the level
     (async () => {
       const foundScores = await getMultiDocsFromFirestore(
         `levels/${activeLevel}/scores`,

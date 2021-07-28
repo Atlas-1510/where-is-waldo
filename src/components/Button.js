@@ -10,8 +10,6 @@ const Button = styled.button`
   border: 2px solid #e63946;
   border-radius: 5px;
   margin: 1rem;
-  ${"" /* border: 2px solid ""; */}
-  ${"" /* border-radius: 3px; */}
 
   @media (max-width: 600px) {
     font-size: 1rem;
